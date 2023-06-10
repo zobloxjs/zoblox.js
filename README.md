@@ -1,7 +1,7 @@
 <div align="center">
 	<br/>
 	<p>
-		<img src="https://cdn.glitch.global/2112c3ad-11f6-4231-ba2b-1ffc12182f51/IMG_20230607_175516.png?v=1686245339559" width="546" alt="zoblox.js" />
+		<img src="https://cdn.glitch.global/2112c3ad-11f6-4231-ba2b-1ffc12182f51/C19FAA14-F4A6-49E3-BEA4-2DE0FAB6E3AB.png?v=1686416549298" width="546" alt="zoblox.js" />
 	</p>
   <h4 align="center">A NodeJS Roblox library</h4>
 	<br/>
