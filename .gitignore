@@ -1,0 +1,7 @@
+.env
+.config/
+shrinkwrap.yaml
+pnpm-debug.log
+.glitchdotcom.json
+.glitch-assets
+.bash_history

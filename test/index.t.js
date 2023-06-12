@@ -1,4 +1,4 @@
-const { Zoblox } = require('../lib/index.js');
+const { Zoblox } = require('../src/index.js');
 const zoblox = new Zoblox();
 
 (async () => {
