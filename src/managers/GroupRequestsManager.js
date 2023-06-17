@@ -2,32 +2,31 @@ const Routes = require('../util/Routes.js');
 const GroupRequest = require('../structures/GroupRequest.js');
 
 class RequestsManager {
-  constructor(GroupId, zoblox) {
+  constructor(Group, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
-    this.id = GroupId;
+    Object.defineProperty(this, 'group', { value: Group });	
   }
   async fetch({ sortOrder, limit, cursor } = {}) {
     try {
       sortOrder = sortOrder || 'Asc', limit = limit || 100, cursor = cursor || '';
-      const { data: joinRequests } = await this.zoblox.session.get(Routes.groups.joinRequests(this.id, limit, sortOrder, cursor));
-      joinRequests.data.map((joinRequest) => {
-        joinRequest.created = new Date(joinRequest.created);
+      const { data: Requests } = await this.zoblox.session.get(Routes.groups.joinRequests(this.group.id, limit, sortOrder, cursor));
+      Requests.data.map((Request) => {
+        Request.created = new Date(Request.created);
       });
-      return joinRequests;
+      return Requests;
     } catch (e) {
-      if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      if (!e.response) throw new Error(e.message);
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     }
   } 
   
   async get(UserId) {
     try {
-      const { data: Request } = await this.zoblox.session.get(Routes.groups.request(this.id, UserId));
-      if (!Request) return null;
-      return new GroupRequest(this.id, Request, this.zoblox);
+      const { data: Request } = await this.zoblox.session.get(Routes.groups.request(this.group.id, UserId));
+      return !Request ? null : new GroupRequest(this.group, Request, this.zoblox);
     } catch (e) {
-      if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      if (!e.response) throw new Error(e.message);
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     } 
   }
 };

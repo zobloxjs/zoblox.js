@@ -5,7 +5,7 @@ module.exports = async function() {
     const response = await this.zoblox.session.post(Routes.groups.request(this.id, this.requester.userId));
     return response;
   } catch (e) {
-    if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-    if (!e.response) throw new Error(e.message);
+    const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+    throw new Error(err);
   }
 } 

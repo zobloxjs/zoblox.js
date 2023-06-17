@@ -1,8 +1,7 @@
 const Routes = require('../../util/Routes.js');
 
-module.exports = async function({ assetTypes, limit, sortOrder, cursor } = {}) {
+module.exports = async function({ assetTypes, limit, sortOrder, cursor }) {
   try {
-    if (!assetTypes) throw new Error('This request needs assetTypes property');
     assetTypes = Array.isArray(assetTypes) ? assetTypes.join(',') : assetTypes, limit = limit || 100, sortOrder = sortOrder || 'Asc', cursor = cursor || '';
     const { data: Inventory } = await this.zoblox.session.get(Routes.inventory.users(this.id, assetTypes, limit, sortOrder, cursor));
     Inventory.data.map((asset) => {
@@ -10,7 +9,7 @@ module.exports = async function({ assetTypes, limit, sortOrder, cursor } = {}) {
     });
     return Inventory;
   } catch (e) {
-    if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-    if (!e.response) throw new Error(e.message);
+    const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+    throw new Error(err);
   }
 }

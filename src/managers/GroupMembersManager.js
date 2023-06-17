@@ -4,27 +4,25 @@ const GroupMember = require('../structures/GroupMember.js');
 class GroupMembersManager {
   constructor(Group, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
-    this.group = Group;
-    this.id = Group.id;
-    this.zoblox.me ? this.me = this.get(this.zoblox.me.id) : this.me = null;
+    Object.defineProperty(this, 'group', { value: Group });
+    Object.defineProperty(this, 'me', { value: this.zoblox.me ? this.get(this.zoblox.me.id) : null });
   }
   async fetch({ roleId, limit, sortOrder, cursor } = {}) {
     try {
       roleId = roleId || '', limit = limit || 100, sortOrder = sortOrder || 'Desc', cursor = cursor || '';
-      const { data: Members } = await this.zoblox.session.get(Routes.groups.players(this.id, roleId, limit, sortOrder, cursor));
+      const { data: Members } = await this.zoblox.session.get(Routes.groups.players(this.group.id, roleId, limit, sortOrder, cursor));
       return Members;
     } catch (e) {
-      if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      if (!e.response) throw new Error(e.message);
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     }
   }
   
   async get(userId) {
     const User = await this.zoblox.users.get(userId);
     const Groups = User.groups;
-    const Group = Groups.find(e => e.group.id == this.id);
-    if (!Group) return null;
-    return new GroupMember(this.zoblox, userId, this.group, Group);
+    const Group = Groups.find(e => e.group.id == this.group.id);
+    return !Group ? null : new GroupMember(this.zoblox, userId, this.group, Group);
   }
 };
 module.exports = GroupMembersManager;

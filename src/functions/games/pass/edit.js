@@ -9,8 +9,7 @@ module.exports = async function(Data) {
     }});
     return response;
   } catch (e) {
-    if (e.response && e.response.headers['content-type'].includes('text/html')) throw new Error("You don't have permissions to do that.");
-    if (e.response && e.response.data.error) throw new Error(e.response.data.error);
-    if (!e.response) throw new Error(e.message);
+    const err = e.response ? e.response.data && e.response.data.error ? `${e.response.status} ${e.response.data.error}` : "You don't have permissions to do that." : e.message;
+    throw new Error(err);
   }
 }

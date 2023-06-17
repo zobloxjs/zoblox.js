@@ -1,6 +1,6 @@
 const Routes = require('../util/Routes.js');
-const getLogo = require('../methods/generatorLogo.js');
-const Group_ = require('../structures/Group.js');
+const fetchLogo = require('../methods/fetchLogo.js');
+const Group = require('../structures/Group.js');
 
 class GroupsManager {
   constructor(zoblox) {
@@ -8,7 +8,6 @@ class GroupsManager {
   }
   async search({ keyword, prioritizeExactMatch, firstGroup, limit, cursor }) {
     try {
-      if (!keyword) throw new Error('Required keyword: search words');
       prioritizeExactMatch = prioritizeExactMatch || false, firstGroup = firstGroup || false, limit = limit || '', cursor = cursor || '';
       const { data: Groups } = await this.zoblox.session.get(Routes.groups.search(keyword, prioritizeExactMatch, limit, cursor));
       Groups.data.map((Group) => {
@@ -17,22 +16,25 @@ class GroupsManager {
       });
       return firstGroup ? Groups.data[0] : Groups;
     } catch (e) {
-      if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      if (!e.response) throw new Error(e.message);
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     }
   } 
   
   async get(groupId) {
     try {
-      const { data: Group } = await this.zoblox.session.get(Routes.groups.group(groupId));
-      if (Group.shout) {
-        Group.shout.created = new Date(Group.shout.created);
-        Group.shout.updated = new Date(Group.shout.updated);
+      const { data: GroupData } = await this.zoblox.session.get(Routes.groups.group(groupId));
+      if (GroupData.shout) {
+        GroupData.shout.created = new Date(GroupData.shout.created);
+        GroupData.shout.updated = new Date(GroupData.shout.updated);
       }
-      Group.logo = await getLogo(groupId);
-      return new Group_(Group, this.zoblox);
-    } catch {
-      return null;
+      GroupData.logo = await fetchLogo(groupId);
+      return new Group(GroupData, this.zoblox);
+    } catch (e) {
+      if (e.response && e.response.status === 404) return null;
+      if (e.response && e.response.data && e.response.data.errors && e.response.data.errors.length) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
+      if (e.response) throw new Error(`${e.response.status} ${e.response.statusText}`);
+      if (!e.response) throw new Error(e.message);
     }
   }
 };

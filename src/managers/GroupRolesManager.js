@@ -2,27 +2,27 @@ const Routes = require('../util/Routes.js');
 const GroupRole = require('../structures/GroupRole.js');
 
 class GroupRolesManager {
-  constructor(GroupId, zoblox) {
+  constructor(Group, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
-    this.id = GroupId;
+    Object.defineProperty(this, 'group', { value: Group });
   }
-  async permissions() {
+  async fetchPermissions() {
     try {
-      const { data: RolesPermissions } = await this.zoblox.session.get(Routes.groups.rolesPermissions(this.id));
+      const { data: { data: RolesPermissions } } = await this.zoblox.session.get(Routes.groups.rolesPermissions(this.group.id));
       return RolesPermissions;
     } catch (e) {
-      if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      if (!e.response) throw new Error(e.message);
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     }
   } 
   
   async fetch() {
     try {
-      const { data: Roles } = await this.zoblox.session.get(Routes.groups.roles(this.id));
+      const { data: Roles } = await this.zoblox.session.get(Routes.groups.roles(this.group.id));
       return Roles;
     } catch (e) {
-      if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      if (!e.response) throw new Error(e.message);
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     }
   }
   
@@ -44,11 +44,11 @@ class GroupRolesManager {
   
   async get(roleId) {
     try {
-      const { data: RolePermissions } = await this.zoblox.session.get(Routes.groups.rolePermissions(this.id, roleId));
-      return new GroupRole(roleId, RolePermissions);
+      const { data: RolePermissions } = await this.zoblox.session.get(Routes.groups.rolePermissions(this.group.id, roleId));
+      return new GroupRole(this.group, roleId, RolePermissions);
     } catch (e) {
-      if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      if (!e.response) throw new Error(e.message);
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     }
   }
 };

@@ -7,8 +7,5 @@ class GamesManager {
   getPass(gamePassId) {
     return new GamePass(gamePassId, this.zoblox);
   } 
-  
-  async getPasses(universeId, limit) {
-  } 
 };
 module.exports = GamesManager;

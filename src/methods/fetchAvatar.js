@@ -1,7 +1,7 @@
 const axios = require('axios');
 const Routes = require('../util/Routes.js');
 
-module.exports = async function getPlayerThumbnail(userId) {
+module.exports = async function(userId) {
   const { data: avatar } = await axios.get(Routes.thumbnails.users.body(`?userIds=${userId}&size=420x420&format=png&isCircular=false`));
   const { data: headshot } = await axios.get(Routes.thumbnails.users.headshot(`?userIds=${userId}&size=420x420&format=png&isCircular=false`));
   return {

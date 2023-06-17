@@ -1,6 +1,6 @@
 const Routes = require('../util/Routes.js');
 const PresencesTypes = require('../util/types/PresencesTypes.js');
-const getAvatar = require('../methods/generatorAvatar.js');
+const fetchAvatar = require('../methods/fetchAvatar.js');
 const User = require('../structures/User.js');
 
 class UsersManager {
@@ -14,13 +14,13 @@ class UsersManager {
           const { data: response } = await this.zoblox.session.post(Routes.users.users(''), {
             body: { userIds, excludeBannedUsers },
           });
-          if (!response.data.length) throw new Error('Invalid User');
+         if (!response.data.length) throw { status: 404 };
           return response.data;
         } else if (!Array.isArray(userIds)) {
           const { data: response } = await this.zoblox.session.post(Routes.users.users(''), {
             body: { userIds: [userIds], excludeBannedUsers },
           });
-          if (!response.data[0]) throw new Error('Invalid User');
+          if (!response.data[0]) throw { status: 404 };
           return response.data[0];
         }
       } else if (userNames) {
@@ -28,30 +28,33 @@ class UsersManager {
           const { data: response } = await this.zoblox.session.post(Routes.users.usernames, {
             body: { usernames: userNames, excludeBannedUsers },
           });
-          if (!response.data.length) throw new Error('Invalid User');
+        if (!response.data.length) throw { status: 404 };
           return response.data;
         } else if (!Array.isArray(userNames)) {
           const { data: response } = await this.zoblox.session.post(Routes.users.usernames, {
             body: { usernames: [userNames], excludeBannedUsers },
           });
-          if (!response.data[0]) throw new Error('Invalid User');
+        if (!response.data[0]) throw { status: 404 };
           return response.data[0];
         }
       }
-    } catch {
-      return null;
+    } catch (e) {
+      if (e.status === 404) return null;
+      if (e.response && e.response.data && e.response.data.errors && e.response.data.errors.length) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
+      if (e.response) throw new Error(`${e.response.status} ${e.response.statusText}`);
+      if (!e.response) throw new Error(e.message);
     }
   }
   
   async get(userId) {
     try {
       let userPresenceStatus;
-      const Profile = {};      
+      const profile = {};      
       const { data: user } = await this.zoblox.session.get(Routes.users.users(userId));
       const { data: friends } = await this.zoblox.session.get(Routes.friends.friendsCount(user.id));
       const { data: followings } = await this.zoblox.session.get(Routes.friends.followingsCount(user.id));
       const { data: followers } = await this.zoblox.session.get(Routes.friends.followersCount(user.id));
-      const { data: { data: Groups } } = await this.zoblox.session.get(Routes.groups.userRoles(user.id));
+      const { data: { data: groups } } = await this.zoblox.session.get(Routes.groups.userRoles(user.id));
       const { data: lastOnline } = await this.zoblox.session.post(Routes.presences.lastOnline, { body: { userIds: [userId] }});
       const { data: { userPresences } } = await this.zoblox.session.post(Routes.presences.users, { body: { userIds: [userId] }});
       const userPresence = userPresences[0];
@@ -61,15 +64,16 @@ class UsersManager {
       if (userPresenceType === PresencesTypes.InGame) userPresenceStatus = 'InGame';
       if (userPresenceType === PresencesTypes.InStudio) userPresenceStatus = 'InStudio';
       //
-      user.avatar = await getAvatar(userId);
+      user.avatar = await fetchAvatar(userId);
       user.presence = { lastOnline: new Date(lastOnline.lastOnlineTimestamps[0].lastOnline), userPresenceType, userPresenceStatus, lastLocation: userPresence.lastLocation, placeId: userPresence.placeId, rootPlaceId: userPresence.rootPlaceId, gameId: userPresence.gameId, universeId: userPresence.universeId };
-      Profile.friendsCount = friends.count;
-      Profile.followingsCount = followings.count;
-      Profile.followersCount = followers.count;
+      profile.friendsCount = friends.count;
+      profile.followingsCount = followings.count;
+      profile.followersCount = followers.count;
       //
-      return new User(user, Profile, Groups, this.zoblox);
-    } catch {
-      return null;
+      return new User(user, profile, groups, this.zoblox);
+    } catch (e) {
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
     }
   }
 };

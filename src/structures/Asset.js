@@ -28,5 +28,8 @@ class Asset {
     this.CollectibleItemId = Asset.CollectibleItemId;
     this.CollectibleProductId = Asset.CollectibleProductId;
   }
+  toString() {
+    return this.linkURL();
+  }
 };
 module.exports = Asset;

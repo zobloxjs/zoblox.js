@@ -9,7 +9,7 @@ module.exports = async function() {
   
     return response.data;
   } catch (e) {
-    if (e.response) throw new Error(`${e.response.status} ${e.response.statusText}.`);
-    if (!e.response) throw new Error(e.message);
+    const err = e.response ? `${e.response.status} ${e.response.statusText}` : e.message;
+    throw new Error(err);
   } 
 };

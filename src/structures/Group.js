@@ -2,12 +2,12 @@ const GroupsMembersManager = require('../managers/GroupMembersManager.js');
 const GroupsRequestsManager = require('../managers/GroupRequestsManager.js');
 const GroupRolesManager = require('../managers/GroupRolesManager.js');
 
-class Groups {
+class Group {
   constructor(Group, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
     this.members = new GroupsMembersManager(Group, zoblox);
-    this.requests = new GroupsRequestsManager(Group.id, zoblox);
-    this.roles = new GroupRolesManager(Group.id, zoblox);
+    this.requests = new GroupsRequestsManager(Group, zoblox);
+    this.roles = new GroupRolesManager(Group, zoblox);
     this.id = Group.id;
     this.name = Group.name;
     this.logo = Group.logo;
@@ -19,5 +19,8 @@ class Groups {
     this.publicEntryAllowed = Group.publicEntryAllowed;
     this.hasVerifiedBadge = Group.hasVerifiedBadge;
   }
+  toString() {
+    return this.linkURL();
+  }
 };
-module.exports = Groups;
+module.exports = Group;

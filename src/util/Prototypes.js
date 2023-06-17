@@ -9,17 +9,17 @@ const Asset = require('../structures/Asset.js');
 
 //MeUser
 MeUser.prototype.declineAllFriendRequests = require('../functions/me/declineAllFriendRequests.js');
-MeUser.prototype.getFriendRequests = require('../functions/me/getFriendRequests.js');
-MeUser.prototype.getTransactions = require('../functions/me/getTransactions.js');
+MeUser.prototype.fetchFriendRequests = require('../functions/me/fetchFriendRequests.js');
+MeUser.prototype.fetchTransactions = require('../functions/me/fetchTransactions.js');
 MeUser.prototype.logout = require('../functions/me/logout.js');
 MeUser.prototype.profileURL = require('../functions/me/profileURL.js');
-MeUser.prototype.removeAsset = require('../functions/me/removeAsset.js');
-MeUser.prototype.wearAsset = require('../functions/me/wearAsset.js');
+MeUser.prototype.removeClothes = require('../functions/me/removeClothes.js');
+MeUser.prototype.wearClothes = require('../functions/me/wearClothes.js');
 
 //Zoblox 
-Zoblox.prototype.getCurrentUser = require('../functions/zoblox/getCurrentUser.js');
+Zoblox.prototype.fetchCurrentUser = require('../functions/zoblox/fetchCurrentUser.js');
+Zoblox.prototype.fetchThumbnails = require('../functions/zoblox/fetchThumbnails.js');
 Zoblox.prototype.getSession = require('../functions/zoblox/getSession.js');
-Zoblox.prototype.getThumbnails = require('../functions/zoblox/getThumbnails.js');
 Zoblox.prototype.getXcsrf = require('../functions/zoblox/getXcsrf.js');
 
 //User 
@@ -27,10 +27,10 @@ User.prototype.acceptFriendRequest = require('../functions/users/acceptFriendReq
 User.prototype.avatarURL = require('../functions/users/avatarURL.js');
 User.prototype.block = require('../functions/users/block.js');
 User.prototype.declineFriendRequest = require('../functions/users/declineFriendRequest.js');
-User.prototype.getBadges = require('../functions/users/getBadges.js');
-User.prototype.getFriends = require('../functions/users/getFriends.js');
-User.prototype.getInventory = require('../functions/users/getInventory.js');
-User.prototype.getSocialLinks = require('../functions/users/getSocialLinks.js');
+User.prototype.fetchBadges = require('../functions/users/fetchBadges.js');
+User.prototype.fetchFriends = require('../functions/users/fetchFriends.js');
+User.prototype.fetchInventory = require('../functions/users/fetchInventory.js');
+User.prototype.fetchSocialLinks = require('../functions/users/fetchSocialLinks.js');
 User.prototype.hasGroup = require('../functions/users/hasGroup.js');
 User.prototype.profileURL = require('../functions/users/profileURL.js');
 User.prototype.removeFriend = require('../functions/users/removeFriend.js');
@@ -45,14 +45,14 @@ Group.prototype.changeOwner = require('../functions/groups/changeOwner.js');
 Group.prototype.changeShout = require('../functions/groups/changeShout.js');
 Group.prototype.deleteWallPost = require('../functions/groups/deleteWallPost.js');
 Group.prototype.deleteWallPostsByUser = require('../functions/groups/deleteWallPostsByUser.js');
-Group.prototype.getAssets = require('../functions/groups/getAssets.js');
-Group.prototype.getAuditLog = require('../functions/groups/getAuditLog.js');
-Group.prototype.getFunds = require('../functions/groups/getFunds.js');
-Group.prototype.getGames = require('../functions/groups/getGames.js');
-Group.prototype.getRevenueSummary = require('../functions/groups/getRevenueSummary.js');
-Group.prototype.getSocialLinks = require('../functions/groups/getSocialLinks.js');
-Group.prototype.getTransactions = require('../functions/groups/getTransactions.js');
-Group.prototype.getWallPosts = require('../functions/groups/getWallPosts.js');
+Group.prototype.fetchAssets = require('../functions/groups/fetchAssets.js');
+Group.prototype.fetchAuditLog = require('../functions/groups/fetchAuditLog.js');
+Group.prototype.fetchCurrency = require('../functions/groups/fetchCurrency.js');
+Group.prototype.fetchGames = require('../functions/groups/fetchGames.js');
+Group.prototype.fetchRevenueSummary = require('../functions/groups/fetchRevenueSummary.js');
+Group.prototype.fetchSocialLinks = require('../functions/groups/fetchSocialLinks.js');
+Group.prototype.fetchTransactions = require('../functions/groups/fetchTransactions.js');
+Group.prototype.fetchWallPosts = require('../functions/groups/fetchWallPosts.js');
 Group.prototype.leave = require('../functions/groups/leave.js');
 Group.prototype.linkURL = require('../functions/groups/linkURL.js');
 Group.prototype.logoURL = require('../functions/groups/logoURL.js');
@@ -77,6 +77,6 @@ GamePass.prototype.edit = require('../functions/games/pass/edit.js');
 //Asset
 Asset.prototype.buy = require('../functions/assets/buy.js');
 Asset.prototype.deleteFromInventory = require('../functions/assets/deleteFromInventory.js');
-Asset.prototype.getResaleData = require('../functions/assets/getResaleData.js');
-Asset.prototype.getResellers = require('../functions/assets/getResellers.js');
+Asset.prototype.fetchResaleData = require('../functions/assets/fetchResaleData.js');
+Asset.prototype.fetchResellers = require('../functions/assets/fetchResellers.js');
 Asset.prototype.linkURL = require('../functions/assets/linkURL.js');

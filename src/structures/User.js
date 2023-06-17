@@ -14,5 +14,8 @@ class User {
     this.profile = Profile;
     this.groups = Groups;
   }
+  toString() {
+    return this.profileURL();
+  }
 };
 module.exports = User;

@@ -12,5 +12,8 @@ class MeUser extends EventEmitter {
     this.IsPremium = User.IsPremium;
     process.nextTick(() => zoblox.emit(Events.UserReady, zoblox));
   }
+  toString() {
+    return this.profileURL();
+  }
 };
 module.exports = MeUser;

@@ -6,7 +6,7 @@ module.exports = async function({ limit, cursor } = {}) {
     const { data: Resellers } = await this.zoblox.session.get(Routes.economy.resellers(this.AssetId, limit, cursor));
     return Resellers;
   } catch (e) {
-    if (e.response) throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-    if (!e.response) throw new Error(e.message);
+    const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+    throw new Error(err);
   }
 }
