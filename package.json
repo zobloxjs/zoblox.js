@@ -1,6 +1,6 @@
 {
   "name": "zoblox.js",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "A NodeJS Roblox library",
   "main": "src/index.js",
   "types": "types/index.d.ts",

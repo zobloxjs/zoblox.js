@@ -1,4 +1,5 @@
 const EventEmitter = require('node:events');
+const defaults = require('./util/Defaults.js');
 const UsersManager = require('./managers/UsersManager.js');
 const GroupsManager = require('./managers/GroupsManager.js');
 const GamesManager = require('./managers/GamesManager.js');
@@ -9,9 +10,9 @@ const Routes = require('./util/Routes.js');
 const Events = require('./util/Events.js');
 
 class Zoblox extends EventEmitter {
-  constructor() {
+  constructor(options = {}) {
     super();
-    Object.defineProperty(this, 'session', { value: new REST() });
+    Object.defineProperty(this, 'session', { value: new REST({ timeout: options.requestTimeout ?? defaults.requestTimeout }) });
     this.users = new UsersManager(this);
     this.groups = new GroupsManager(this);
     this.games = new GamesManager(this);
@@ -21,8 +22,8 @@ class Zoblox extends EventEmitter {
   login(Cookie) {
     return this.session.setCookie(Cookie)
     .then(() => this.fetchCurrentUser()
-    .then((user) => {
-       this.me = new MeUser(user, this);
+    .then((User) => {
+       this.me = new MeUser(User, this);
        return this.me;
     })) 
   }

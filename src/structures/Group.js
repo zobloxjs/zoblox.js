@@ -14,7 +14,7 @@ class Group {
     this.description = Group.description;
     this.owner = Group.owner;
     this.shout = Group.shout;
-    this.membersCount = Group.memberCount;
+    this.memberCount = Group.memberCount;
     this.isBuildersClubOnly = Group.isBuildersClubOnly;
     this.publicEntryAllowed = Group.publicEntryAllowed;
     this.hasVerifiedBadge = Group.hasVerifiedBadge;

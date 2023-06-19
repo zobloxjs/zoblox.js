@@ -5,6 +5,7 @@ exports.REST = require('./rest/RESTManager.js');
 // Utilities
 exports.Routes = require('./util/Routes.js');
 exports.Events = require('./util/Events.js');
+exports.defaults = require('./util/Defaults.js');
 exports.WebSocketEvents = require('./util/WebSocketEvents.js');
 exports.WebSocketTypes = require('./util/types/WebSocketTypes.js');
 exports.PresencesTypes = require('./util/types/PresencesTypes.js');

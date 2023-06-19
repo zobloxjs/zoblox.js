@@ -2,7 +2,15 @@ const axios = require('axios');
 const Routes = require('../util/Routes.js');
 
 module.exports = class Rest {
-  constructor() {}
+  constructor(options = {}) {
+    if ('timeout' in options) {
+      this.timeout = +options.timeout;
+      axios.defaults.timeout = +options.timeout;
+    } else {
+      this.timeout = 10000;
+      axios.defaults.timeout = 10000;
+    }
+  }
   async setCookie(Cookie) {
     const XCSRF = await generatorXcsrf(Cookie);
     this.cookie = Cookie;

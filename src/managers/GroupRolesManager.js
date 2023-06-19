@@ -31,11 +31,11 @@ class GroupRolesManager {
       if (roleId) {
         const Roles = await this.fetch();
         const Role = Roles.roles.find(role => role.id === +roleId);
-        return Role || null;
+        return Role ?? null;
       } else if (roleName) {
         const Roles = await this.fetch();
         const Role = Roles.roles.find(role => role.name === roleName);
-        return Role || null;
+        return Role ?? null;
       } 
     } catch (e) {
       throw new Error(e.message);
