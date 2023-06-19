@@ -7,8 +7,8 @@ module.exports = class Rest {
       this.timeout = +options.timeout;
       axios.defaults.timeout = +options.timeout;
     } else {
-      this.timeout = 10000;
-      axios.defaults.timeout = 10000;
+      this.timeout = 0;
+      axios.defaults.timeout = 0;
     }
   }
   async setCookie(Cookie) {
