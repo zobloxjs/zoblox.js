@@ -1,3 +1,4 @@
+const generatorXcsrf = require('../methods/generatorXcsrf.js');
 const axios = require('axios');
 const Routes = require('../util/Routes.js');
 
@@ -8,7 +9,6 @@ module.exports = class Rest {
       axios.defaults.timeout = +options.timeout;
     } else {
       this.timeout = 0;
-      axios.defaults.timeout = 0;
     }
   }
   async setCookie(Cookie) {
@@ -59,12 +59,3 @@ module.exports = class Rest {
     return await request({ url: Url, headers, ...Options });
   }
 };
-
-async function generatorXcsrf(Cookie) {
-  let XCSRF;
-  const response = await axios({ url: Routes.logout, method: 'POST', headers: { 'Cookie': '.ROBLOSECURITY=' + Cookie, 'Content-Type': 'application/json' }}).catch(({ response: res }) => {
-  XCSRF = res.headers['x-csrf-token'];
-  if (!XCSRF) throw new Error('Invalid cookie was provided');
-  });
-  return XCSRF;
-}

@@ -19,8 +19,7 @@ class GroupMembersManager {
   }
   
   async get(userId) {
-    const User = await this.zoblox.users.get(userId);
-    const Groups = User.groups;
+    const Groups = await require('../functions/users/fetchGroups').bind({ zoblox: this.zoblox, id: userId })();
     const Group = Groups.find(e => e.group.id == this.group.id);
     return !Group ? null : new GroupMember(this.zoblox, userId, this.group, Group);
   }

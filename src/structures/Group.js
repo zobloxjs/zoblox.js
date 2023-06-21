@@ -1,6 +1,7 @@
 const GroupsMembersManager = require('../managers/GroupMembersManager.js');
 const GroupsRequestsManager = require('../managers/GroupRequestsManager.js');
 const GroupRolesManager = require('../managers/GroupRolesManager.js');
+const Routes = require('../util/Routes.js');
 
 class Group {
   constructor(Group, zoblox) {
@@ -19,8 +20,12 @@ class Group {
     this.publicEntryAllowed = Group.publicEntryAllowed;
     this.hasVerifiedBadge = Group.hasVerifiedBadge;
   }
+  get linkURL() {
+    return Routes.groups.link(this.id);
+  } 
+
   toString() {
-    return this.linkURL();
+    return this.linkURL;
   }
 };
 module.exports = Group;

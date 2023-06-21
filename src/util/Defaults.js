@@ -1,3 +1,3 @@
 module.exports = {
-  requestTimeout: 10000
+  requestTimeout: 15000
 }

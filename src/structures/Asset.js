@@ -1,3 +1,5 @@
+const Routes = require('../util/Routes.js');
+
 class Asset {
   constructor(Asset, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
@@ -28,8 +30,12 @@ class Asset {
     this.CollectibleItemId = Asset.CollectibleItemId;
     this.CollectibleProductId = Asset.CollectibleProductId;
   }
+  get linkURL() {
+    return Routes.assetsLink(this.AssetId);
+  } 
+
   toString() {
-    return this.linkURL();
+    return this.linkURL;
   }
 };
 module.exports = Asset;
