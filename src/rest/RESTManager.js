@@ -2,7 +2,7 @@ const generatorXcsrf = require('../methods/generatorXcsrf.js');
 const axios = require('axios');
 const Routes = require('../util/Routes.js');
 
-module.exports = class Rest {
+class Rest {
   constructor(options = {}) {
     if ('timeout' in options) {
       this.timeout = +options.timeout;
@@ -23,7 +23,7 @@ module.exports = class Rest {
       const newXcsrf = await generatorXcsrf(this.cookie);
       if (newXcsrf === this.xcsrf) return;
       this.xcsrf = newXcsrf;
-      this.headers.xcsrf = newXcsrf;
+      this.headers['X-CSRF-TOKEN'] = newXcsrf;
       return newXcsrf;
     } 
   } 
@@ -84,3 +84,4 @@ module.exports = class Rest {
     return await request({ url: Url, headers, ...Options });
   }
 };
+module.exports = Rest;

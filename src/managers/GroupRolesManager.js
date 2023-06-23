@@ -6,6 +6,18 @@ class GroupRolesManager {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
     Object.defineProperty(this, 'group', { value: Group });
   }
+  async create(body) {
+    try {
+      const { data: Role } = await this.zoblox.session.post(Routes.groups.roleCreate(this.group.id), {
+        body 
+      });
+      return Role;
+    } catch (e) {
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
+    }
+  } 
+  
   async fetchPermissions() {
     try {
       const { data: { data: RolesPermissions } } = await this.zoblox.session.get(Routes.groups.rolesPermissions(this.group.id));
@@ -45,7 +57,7 @@ class GroupRolesManager {
   async get(roleId) {
     try {
       const { data: RolePermissions } = await this.zoblox.session.get(Routes.groups.rolePermissions(this.group.id, roleId));
-      return new GroupRole(this.group, roleId, RolePermissions);
+      return new GroupRole(this.group, roleId, RolePermissions, this.zoblox);
     } catch (e) {
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
       throw new Error(err);

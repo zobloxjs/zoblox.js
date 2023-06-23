@@ -6,9 +6,9 @@ const Routes = require('../util/Routes.js');
 class Group {
   constructor(Group, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
-    this.members = new GroupsMembersManager(Group, zoblox);
-    this.requests = new GroupsRequestsManager(Group, zoblox);
-    this.roles = new GroupRolesManager(Group, zoblox);
+    this.members = new GroupsMembersManager(this, zoblox);
+    this.requests = new GroupsRequestsManager(this, zoblox);
+    this.roles = new GroupRolesManager(this, zoblox);
     this.id = Group.id;
     this.name = Group.name;
     this.logo = Group.logo;

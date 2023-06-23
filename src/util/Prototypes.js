@@ -4,6 +4,7 @@ const User = require('../structures/User.js');
 const Group = require('../structures/Group.js');
 const GroupMember = require('../structures/GroupMember.js');
 const GroupRequest = require('../structures/GroupRequest.js');
+const GroupRole = require('../structures/GroupRole.js');
 const GamePass = require('../structures/GamePass.js');
 const Asset = require('../structures/Asset.js');
 
@@ -51,12 +52,14 @@ Group.prototype.fetchCurrency = require('../functions/groups/fetchCurrency.js');
 Group.prototype.fetchGames = require('../functions/groups/fetchGames.js');
 Group.prototype.fetchOwner = require('../functions/groups/fetchOwner.js');
 Group.prototype.fetchRevenueSummary = require('../functions/groups/fetchRevenueSummary.js');
+Group.prototype.fetchSettings = require('../functions/groups/fetchSettings.js');
 Group.prototype.fetchSocialLinks = require('../functions/groups/fetchSocialLinks.js');
 Group.prototype.fetchTransactions = require('../functions/groups/fetchTransactions.js');
 Group.prototype.fetchWallPosts = require('../functions/groups/fetchWallPosts.js');
 Group.prototype.leave = require('../functions/groups/leave.js');
 Group.prototype.logoURL = require('../functions/groups/logoURL.js');
 Group.prototype.payouts = require('../functions/groups/payouts.js');
+Group.prototype.updateSettings = require('../functions/groups/updateSettings.js');
 
 //GroupMember
 GroupMember.prototype.changeRole = require('../functions/groups/members/changeRole.js');
@@ -70,6 +73,10 @@ GroupMember.prototype.payout = require('../functions/groups/members/payout.js');
 //GroupRequest 
 GroupRequest.prototype.accept = require('../functions/groups/requests/accept.js');
 GroupRequest.prototype.decline = require('../functions/groups/requests/decline.js');
+
+//GroupRole
+GroupRole.prototype.delete = require('../functions/groups/roles/delete.js');
+GroupRole.prototype.update = require('../functions/groups/roles/update.js');
 
 //GamePass
 GamePass.prototype.edit = require('../functions/games/pass/edit.js');
