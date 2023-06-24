@@ -20,7 +20,7 @@ module.exports = async function(requests) {
   });
 
   const { data: { data: response } } = await this.session.post(Routes.thumbnails.batch, {
-    body: requests
+    data: requests
   })
   return response;
 }

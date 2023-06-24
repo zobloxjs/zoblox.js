@@ -12,13 +12,13 @@ class UsersManager {
       if (userIds) {
         if (Array.isArray(userIds)) {
           const { data: response } = await this.zoblox.session.post(Routes.users.users(''), {
-            body: { userIds, excludeBannedUsers },
+            data: { userIds, excludeBannedUsers },
           });
          if (!response.data.length) return null;
           return response.data;
         } else {
           const { data: response } = await this.zoblox.session.post(Routes.users.users(''), {
-            body: { userIds: [userIds], excludeBannedUsers },
+            data: { userIds: [userIds], excludeBannedUsers },
           });
           if (!response.data[0]) return null;
           return response.data[0];
@@ -26,13 +26,13 @@ class UsersManager {
       } else if (userNames) {
         if (Array.isArray(userNames)) {
           const { data: response } = await this.zoblox.session.post(Routes.users.usernames, {
-            body: { usernames: userNames, excludeBannedUsers },
+            data: { usernames: userNames, excludeBannedUsers },
           });
         if (!response.data.length) return null;
           return response.data;
         } else {
           const { data: response } = await this.zoblox.session.post(Routes.users.usernames, {
-            body: { usernames: [userNames], excludeBannedUsers },
+            data: { usernames: [userNames], excludeBannedUsers },
           });
         if (!response.data[0]) return null;
           return response.data[0];

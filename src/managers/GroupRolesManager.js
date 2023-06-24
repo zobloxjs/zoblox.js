@@ -6,10 +6,10 @@ class GroupRolesManager {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
     Object.defineProperty(this, 'group', { value: Group });
   }
-  async create(body) {
+  async create(data) {
     try {
       const { data: Role } = await this.zoblox.session.post(Routes.groups.roleCreate(this.group.id), {
-        body 
+        data
       });
       return Role;
     } catch (e) {
