@@ -28,57 +28,57 @@ class Rest {
     } 
   } 
   
-  async get(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;                                                                            
+  async get(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);                                                        
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
+    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                               
     Options.headers ? (headers = { ...headers, ...Options.headers }) : headers;                                                      
     Options.headers ? delete Options.headers : null;
-    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;
-    delete Options.XCSRFRenewal;                                                    
+    delete Options.XCSRFRenewal;                                                     
     const request = axios.create({ method: 'GET' });
     return await request({ url: Url, headers, ...Options });
   }
   
   async post(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`); 
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;                                        
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true; 
+    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                                      
     Options.headers ? (headers = { ...headers, ...Options.headers }) : headers;                                                         
     Options.headers ? delete Options.headers : null;                                 
     Options.body ? (Options.data = Options.body) : null;
     Options.body ? delete Options.body : null;
-    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;
     delete Options.XCSRFRenewal;                                                     
     const request = axios.create({ method: 'POST' });
     return await request({ url: Url, headers, ...Options });
   }
   
   async put(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;                                        
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
+    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                                      
     Options.headers ? (headers = { ...headers, ...Options.headers }) : headers;                                                         
     Options.headers ? delete Options.headers : null;                                                                                     
     Options.body ? (Options.data = Options.body) : null;
     Options.body ? delete Options.body : null;
-    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;    
     delete Options.XCSRFRenewal;                                                  
     const request = axios.create({ method: 'PUT' });
     return await request({ url: Url, headers, ...Options });
   }
   
   async patch(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;                                                                          
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
+    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                                 
     Options.headers ? (headers = { ...headers, ...Options.headers }) : headers;                                                         
     Options.headers ? delete Options.headers : null;                                                                                       
     Options.body ? (Options.data = Options.body) : null;
     Options.body ? delete Options.body : null;
-    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null; 
     delete Options.XCSRFRenewal;                                                      
     const request = axios.create({ method: 'PATCH' });
     return await request({ url: Url, headers, ...Options });
   }
   
   async delete(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;                                                                                                                  
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;   
+    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;
     Options.headers ? (headers = { ...headers, ...Options.headers }) : headers;                                                         
     Options.headers ? delete Options.headers : null;
-    Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;
     delete Options.XCSRFRenewal;                                                       
     const request = axios.create({ method: 'DELETE' });
     return await request({ url: Url, headers, ...Options });
