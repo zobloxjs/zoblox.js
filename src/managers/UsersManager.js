@@ -51,7 +51,7 @@ class UsersManager {
       const { data: { count: friends } } = await this.zoblox.session.get(Routes.friends.friendsCount(user.id));
       const { data: { count: followings } } = await this.zoblox.session.get(Routes.friends.followingsCount(user.id));
       const { data: { count: followers } } = await this.zoblox.session.get(Routes.friends.followersCount(user.id));
-      
+
       user.avatar = await fetchAvatar(userId);
       profile.friendsCount = friends;
       profile.followingsCount = followings;

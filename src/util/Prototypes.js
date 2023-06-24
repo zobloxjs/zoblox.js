@@ -33,7 +33,6 @@ User.prototype.fetchGroups = require('../functions/users/fetchGroups.js');
 User.prototype.fetchInventory = require('../functions/users/fetchInventory.js');
 User.prototype.fetchPresence = require('../functions/users/fetchPresence.js');
 User.prototype.fetchSocialLinks = require('../functions/users/fetchSocialLinks.js');
-User.prototype.hasGroup = require('../functions/users/hasGroup.js');
 User.prototype.removeFriend = require('../functions/users/removeFriend.js');
 User.prototype.sendFriendRequest = require('../functions/users/sendFriendRequest.js');
 User.prototype.unblock = require('../functions/users/unblock.js');
