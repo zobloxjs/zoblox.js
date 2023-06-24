@@ -4,6 +4,7 @@ const Routes = require('../util/Routes.js');
 
 class Rest {
   constructor(options = {}) {
+    this.headers = { 'Content-Type': 'application/json' };
     if ('timeout' in options) {
       this.timeout = +options.timeout;
       axios.defaults.timeout = +options.timeout;
@@ -15,7 +16,7 @@ class Rest {
     const XCSRF = await generatorXcsrf(Cookie);
     this.cookie = Cookie;
     this.xcsrf = XCSRF;
-    this.headers = { 'Cookie': '.ROBLOSECURITY=' + Cookie, 'X-CSRF-TOKEN': XCSRF, 'Content-Type': 'application/json' };
+    this.headers = { ...this.headers, 'Cookie': '.ROBLOSECURITY=' + Cookie, 'X-CSRF-TOKEN': XCSRF };
   }
   
   async XCSRFRenewal() {
@@ -48,7 +49,7 @@ class Rest {
     Options.headers ? (headers = { ...headers, ...Options.headers }) : null;                                                         
     Options.headers ? delete Options.headers : null;                                 
     delete Options.XCSRFRenewal;                                                     
-    const request = axios.create({ method: 'POST' });
+    const request = axios.create({ method: 'POST' });                                                        
     return await request({ url: Url, headers, ...Options });
   }
   

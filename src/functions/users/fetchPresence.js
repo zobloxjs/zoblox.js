@@ -4,8 +4,8 @@ const PresencesTypes = require('../../util/types/PresencesTypes.js');
 module.exports = async function() {
   try {
     let userPresenceStatus;
-    const { data: lastOnline } = await this.zoblox.session.post(Routes.presences.lastOnline, { body: {'userIds': [this.id] }});
-    const { data: { userPresences } } = await this.zoblox.session.post(Routes.presences.users, { body: {'userIds': [this.id] }});
+    const { data: lastOnline } = await this.zoblox.session.post(Routes.presences.lastOnline, { data: {'userIds': [this.id] } });
+    const { data: { userPresences } } = await this.zoblox.session.post(Routes.presences.users, { data: {'userIds': [this.id] } });
     const userPresence = userPresences[0];
     const userPresenceType = userPresence.userPresenceType;
     
