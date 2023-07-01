@@ -6,6 +6,7 @@ const GroupMember = require('../structures/GroupMember.js');
 const GroupRequest = require('../structures/GroupRequest.js');
 const GroupRole = require('../structures/GroupRole.js');
 const GamePass = require('../structures/GamePass.js');
+const Universe = require('../structures/Universe.js');
 const Asset = require('../structures/Asset.js');
 
 //MeUser
@@ -20,6 +21,7 @@ MeUser.prototype.wearClothes = require('../functions/me/wearClothes.js');
 Zoblox.prototype.fetchCurrentUser = require('../functions/zoblox/fetchCurrentUser.js');
 Zoblox.prototype.fetchThumbnails = require('../functions/zoblox/fetchThumbnails.js');
 Zoblox.prototype.getSession = require('../functions/zoblox/getSession.js');
+Zoblox.prototype.getTax = require('../functions/zoblox/getTax.js');
 Zoblox.prototype.getXcsrf = require('../functions/zoblox/getXcsrf.js');
 
 //User 
@@ -28,6 +30,8 @@ User.prototype.avatarURL = require('../functions/users/avatarURL.js');
 User.prototype.block = require('../functions/users/block.js');
 User.prototype.declineFriendRequest = require('../functions/users/declineFriendRequest.js');
 User.prototype.fetchBadges = require('../functions/users/fetchBadges.js');
+User.prototype.fetchCreationGames = require('../functions/users/fetchCreationGames.js');
+User.prototype.fetchFavoriteGames = require('../functions/users/fetchFavoriteGames.js');
 User.prototype.fetchFriends = require('../functions/users/fetchFriends.js');
 User.prototype.fetchGroups = require('../functions/users/fetchGroups.js');
 User.prototype.fetchInventory = require('../functions/users/fetchInventory.js');
@@ -62,10 +66,8 @@ Group.prototype.updateSettings = require('../functions/groups/updateSettings.js'
 
 //GroupMember
 GroupMember.prototype.changeRole = require('../functions/groups/members/changeRole.js');
-GroupMember.prototype.getRank = require('../functions/groups/members/getRank.js');
-GroupMember.prototype.getRankName = require('../functions/groups/members/getRankName.js');
+GroupMember.prototype.fetchRole = require('../functions/groups/members/fetchRole.js');
 GroupMember.prototype.hasRole = require('../functions/groups/members/hasRole.js');
-GroupMember.prototype.isOwner = require('../functions/groups/members/isOwner.js');
 GroupMember.prototype.kick = require('../functions/groups/members/kick.js');
 GroupMember.prototype.payout = require('../functions/groups/members/payout.js');
 
@@ -79,6 +81,12 @@ GroupRole.prototype.update = require('../functions/groups/roles/update.js');
 
 //GamePass
 GamePass.prototype.edit = require('../functions/games/pass/edit.js');
+
+//Universe
+Universe.prototype.fetchBadges = require('../functions/games/universe/fetchBadges.js');
+Universe.prototype.fetchPasses = require('../functions/games/universe/fetchPasses.js');
+Universe.prototype.fetchRevenue = require('../functions/games/universe/fetchRevenue.js');
+Universe.prototype.fetchSocialLinks = require('../functions/games/universe/fetchSocialLinks.js');
 
 //Asset
 Asset.prototype.buy = require('../functions/assets/buy.js');

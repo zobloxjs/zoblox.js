@@ -5,5 +5,8 @@ class GroupMember {
     this.group = Group;
     this.role = GroupMember.role;
   }
+  get isOwner() {
+    return this.group.owner.userId == this.id;
+  } 
 };
 module.exports = GroupMember;

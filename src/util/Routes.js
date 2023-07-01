@@ -54,8 +54,12 @@ module.exports = {
   itemconfiguration: {
     getAssets: (GroupId, assetType, limit, sortOrder, cursor) => https + 'itemconfiguration.roblox.com/v1/creations/get-assets?groupId=' + GroupId + '&assetType=' + assetType + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
   }, 
+  develop: {
+    places: (PlaceId, type, granularity) => https + 'develop.roblox.com/v1/places/' + PlaceId + '/stats/' + type + '?granularity=' + granularity, 
+  }, 
   badges: {
     users: (UserId, limit, sortOrder, cursor) => https + 'badges.roblox.com/v1/users/' + UserId + '/badges?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
+    universes: (UniverseId, limit, sortOrder, cursor) => https + 'badges.roblox.com/v1/universes/' + UniverseId + '/badges?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
   },
   inventory: {
     users: (UserId, assetTypes, limit, sortOrder, cursor) => https + 'inventory.roblox.com/v2/users/' + UserId + '/inventory?assetTypes=' + assetTypes + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
@@ -88,6 +92,11 @@ module.exports = {
   }, 
   games: {
     groupGames: (GroupId, accessFilter, limit, sortOrder, cursor) => https + 'games.roblox.com/v2/groups/' + GroupId + '/games?accessFilter=' + accessFilter + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
+    userGames: (UserId, accessFilter, limit, sortOrder, cursor) => https + 'games.roblox.com/v2/users/' + UserId + '/games?accessFilter=' + accessFilter + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
+    userFavoriteGames: (UserId, accessFilter, limit, sortOrder, cursor) => https + 'games.roblox.com/v2/users/' + UserId + '/favorite/games?accessFilter=' + accessFilter + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
+    universes: (IDs) => https + 'games.roblox.com/v1/games?universeIds=' + IDs, 
+    passes: (UniverseId, limit, sortOrder, cursor) => https + 'games.roblox.com/v1/games/' + UniverseId +' /game-passes?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
+    SocialLinks: (UniverseId) => https + 'games.roblox.com/v1/games/' + UniverseId + '/social-links/list', 
   }, 
   friends: {
     friendsCount: (UserId) => https + 'friends.roblox.com/v1/users/' + UserId + '/friends/count', 

@@ -12,17 +12,9 @@ class AssetsManager {
       Details.Updated = new Date(Details.Updated);
       return new Asset(Details, this.zoblox);
     } catch (e) {
-      if (e.response) {
-      if (e.response.status === 400) {
-        return null;
-      }
-      if (e.response.data && e.response.data.errors && e.response.data.errors.length) {
-        throw new Error(`${e.response.status} ${e.response.data.errors.map(e => e.message)}`);
-      }
-        throw new Error(`${e.response.status} ${e.response.statusText}`);
-      } else {
-        throw new Error(e.message);
-      }
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      if (e.response && e.response.status === 400) return null;
+      throw new Error(err);
     } 
   } 
 };

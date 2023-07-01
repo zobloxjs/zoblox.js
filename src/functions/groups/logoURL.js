@@ -1,6 +1,7 @@
 const Routes = require('../../util/Routes.js');
 
-module.exports = function({ sizes = '420x420', format = 'png' } = { sizes: '420x420', format: 'png' }) {
+module.exports = function({ sizes, format, isCircular } = {}) {
+  sizes = sizes || '420x420', format = format || 'png', isCircular = isCircular || false;
   sizes = sizes.split('x');
   format = format.charAt(0).toUpperCase() + format.slice(1).toLowerCase();
     
@@ -11,6 +12,6 @@ module.exports = function({ sizes = '420x420', format = 'png' } = { sizes: '420x
     y: +sizes[1]
   }
     
-  const ImageUrl = Routes.RbxThumbnailURL + this.logo + `/${data.x}/${data.y}/Image/` + format;
+  const ImageUrl = Routes.RbxThumbnailURL + this.logo + `/${data.x}/${data.y}/Image/${format}${isCircular ? '/isCircular' : '' }`;
   return ImageUrl; 
 }

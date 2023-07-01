@@ -1,6 +1,7 @@
 const Routes = require('../../util/Routes.js');
 
-module.exports = function({ sizes = '420x420', format = 'png', type = 'body' } = { sizes: '420x420', format: 'png', type: 'body' }) {
+module.exports = function({ sizes, format, type, isCircular } = {}) {
+  sizes = sizes || '420x420', format = format || 'png', type = type || 'body', isCircular = isCircular || false; 
   sizes = sizes.split('x');
   format = format.charAt(0).toUpperCase() + format.slice(1).toLowerCase();
     
@@ -13,10 +14,10 @@ module.exports = function({ sizes = '420x420', format = 'png', type = 'body' } =
     
   switch (type.toLowerCase()) {
     case 'headshot':
-      const imageUrlHeadshot = Routes.RbxThumbnailURL + this.avatar.headshot + `/${data.x}/${data.y}/AvatarHeadshot/` + format;
+      const imageUrlHeadshot = Routes.RbxThumbnailURL + this.avatar.headshot + `/${data.x}/${data.y}/AvatarHeadshot/${format}${isCircular ? '/isCircular' : '' }`;
       return imageUrlHeadshot; 
     case 'body':
-      const imageUrlBody = Routes.RbxThumbnailURL + this.avatar.body + `/${data.x}/${data.y}/Avatar/` + format;
+      const imageUrlBody = Routes.RbxThumbnailURL + this.avatar.body + `/${data.x}/${data.y}/Avatar/${format}${isCircular ? '/isCircular' : '' }`;
       return imageUrlBody;
       break;
     default:

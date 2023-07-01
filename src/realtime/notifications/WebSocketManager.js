@@ -1,22 +1,21 @@
-const Routes = require('../util/Routes.js');
+const Routes = require('../../util/Routes.js');
 const WebSocketClient = require('signalr-client').client;
 const WebSocket = require('./WebSocket.js');
 
 class WebSocketManager {
-  constructor(zoblox) {
+  constructor(zoblox, notifications) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
+    Object.defineProperty(this, 'notifications', { value: notifications });
     this.web = null;
     this.events = null;
   }
   connect() {
     const ws = new WebSocketClient(Routes.wss.notifications, ['usernotificationhub'], 3, true);
     ws.headers.Cookie = '.ROBLOSECURITY=' + this.zoblox.session.cookie;
-    ws.serviceHandlers.connected = () => {}
-
-    setTimeout(() => {
-      ws.start();
-    }, 10000);
-    const websocket = new WebSocket(this.zoblox, ws);
+    ws.serviceHandlers.connected = () => {};
+    ws.start();
+    
+    const websocket = new WebSocket(this.zoblox, this.notifications, ws);
     this.web = websocket.ws;
     this.events = websocket.events;
 

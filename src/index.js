@@ -27,6 +27,7 @@ exports.GroupMember = require('./structures/GroupMember.js');
 exports.GroupRequest = require('./structures/GroupRequest.js');
 exports.GroupRole = require('./structures/GroupRole.js');
 exports.MeUser = require('./structures/MeUser.js');
+exports.Universe = require('./structures/Universe.js');
 exports.User = require('./structures/User.js');
 
 // Others
