@@ -33,7 +33,7 @@ class Rest {
   } 
 } 
   
-  async get(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);                                                        
+  async get(Url, Options = {}, headers = this.headers) {                                               
     Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
     Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                               
     Options.headers ? (headers = { ...headers, ...Options.headers }) : null;                                                    
@@ -43,7 +43,7 @@ class Rest {
     return await request({ url: Url, headers, ...Options });
   }
   
-  async post(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`); 
+  async post(Url, Options = {}, headers = this.headers) { 
     Options.XCSRFRenewal = Options.XCSRFRenewal ?? true; 
     Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                                      
     Options.headers ? (headers = { ...headers, ...Options.headers }) : null;                                                         
@@ -53,7 +53,7 @@ class Rest {
     return await request({ url: Url, headers, ...Options });
   }
   
-  async put(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);
+  async put(Url, Options = {}, headers = this.headers) {
     Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
     Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                                      
     Options.headers ? (headers = { ...headers, ...Options.headers }) : null;                                                         
@@ -63,7 +63,7 @@ class Rest {
     return await request({ url: Url, headers, ...Options });
   }
   
-  async patch(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);
+  async patch(Url, Options = {}, headers = this.headers) {
     Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
     Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;                                 
     Options.headers ? (headers = { ...headers, ...Options.headers }) : null;                                                         
@@ -73,7 +73,7 @@ class Rest {
     return await request({ url: Url, headers, ...Options });
   }
   
-  async delete(Url, Options = {}, headers = this.headers) { if (!Url.includes(Routes.RobloxDomain)) throw new Error(`The Domain Must Be Includes '${Routes.RobloxDomain}'.`);
+  async delete(Url, Options = {}, headers = this.headers) {
     Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;   
     Options.XCSRFRenewal ? await this.XCSRFRenewal() : null;
     Options.headers ? (headers = { ...headers, ...Options.headers }) : null;                                                         

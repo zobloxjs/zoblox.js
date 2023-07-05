@@ -14,6 +14,9 @@ module.exports = {
     profile: (UserId) => host + 'users/' + UserId, 
     usernames: https + 'users.roblox.com/v1/usernames/users', 
     users: (UserId) => https + 'users.roblox.com/v1/users/' + UserId, 
+    description: https + 'users.roblox.com/v1/description', 
+    birthdate: https + 'users.roblox.com/v1/birthdate', 
+    gender: https + 'users.roblox.com/v1/gender', 
   }, 
   thumbnails: {
     groups: (Url) => https + 'thumbnails.roblox.com/v1/groups/icons' + Url, 
@@ -79,9 +82,10 @@ module.exports = {
     rolePermissions: (GroupId, RoleId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/' + RoleId + '/permissions', 
     rolesPermissions: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/permissions', 
     roleCreate: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/rolesets/create', 
-    changeDescription: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/description', 
-    changeName: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/name', 
-    changeStatus: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/status', 
+    description: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/description', 
+    name: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/name', 
+    status: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/status', 
+    icon: (GroupId) => https + 'groups.roblox.com/v1/groups/icon?groupId=' + GroupId, 
     wallPost: (GroupId, PostId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/wall/posts/' + PostId, 
     wallPostUser: (GroupId, UserId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/wall/users/' + UserId + '/posts', 
     players: (GroupId, RoleId, limit, sortOrder, cursor) => RoleId !== '' ? https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/' + RoleId + '/users?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor : https + 'groups.roblox.com/v1/groups/' + GroupId + '/users?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
@@ -116,6 +120,5 @@ module.exports = {
   updateGamePass: host + 'game-pass/update', 
   deleteFromInventory: host + 'asset/delete-from-inventory', 
   assetsLink: (AssetId) => host + 'catalog/' + AssetId, 
-  customURL: (Url) => https + Url, 
   RobloxDomain: robloxDomain 
 };

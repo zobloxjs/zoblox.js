@@ -31,8 +31,8 @@ class GroupsManager {
       GroupData.logo = await fetchLogo(groupId);
       return new Group(GroupData, this.zoblox);
     } catch (e) {
+      if (e.response && e.response.status === 404) return null;
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
-      if (e.response && e.response.status === 400) return null;
       throw new Error(err);
     }
   }

@@ -10,7 +10,7 @@ class UsersManager {
   async find({ userIds, userNames, excludeBannedUsers = false }) {
     try {
       if (userIds) {
-        if (Array.isArray(userIds)) {
+        if (userIds instanceof Array)  {
           const { data: response } = await this.zoblox.session.post(Routes.users.users(''), {
             data: { userIds, excludeBannedUsers },
           });
@@ -24,7 +24,7 @@ class UsersManager {
           return response.data[0];
         }
       } else if (userNames) {
-        if (Array.isArray(userNames)) {
+        if (userNames instanceof Array) {
           const { data: response } = await this.zoblox.session.post(Routes.users.usernames, {
             data: { usernames: userNames, excludeBannedUsers },
           });
@@ -59,8 +59,8 @@ class UsersManager {
       
       return new User(user, profile, this.zoblox);
     } catch (e) {
-      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
       if (e.response && e.response.status === 404) return null;
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
       throw new Error(err);
     }
   }

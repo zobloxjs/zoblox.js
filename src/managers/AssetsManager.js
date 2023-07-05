@@ -12,8 +12,8 @@ class AssetsManager {
       Details.Updated = new Date(Details.Updated);
       return new Asset(Details, this.zoblox);
     } catch (e) {
+      if (e.response && e.response.status === 404) return null;
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
-      if (e.response && e.response.status === 400) return null;
       throw new Error(err);
     } 
   } 
