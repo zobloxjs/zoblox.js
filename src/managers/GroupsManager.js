@@ -1,3 +1,5 @@
+const FormData = require('form-data');
+const { resolveImage } = require('../util/Util.js');
 const Routes = require('../util/Routes.js');
 const fetchLogo = require('../methods/fetchLogo.js');
 const Group = require('../structures/Group.js');
@@ -6,6 +8,29 @@ class GroupsManager {
   constructor(zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
   }
+  async create(name, options = {}) {
+    try {
+      const data = new FormData();
+      data.append('name', name);
+      data.append('File', await resolveImage(options.icon), 'image.jpg');
+    
+      if (options.description) data.append('description', options.description);
+      if (options.publicGroup !== undefined) data.append('publicGroup', '' + options.publicGroup);
+      if (options.buildersClubMembersOnly !== undefined) data.append('buildersClubMembersOnly', '' + options.buildersClubMembersOnly);
+
+      const { data: newGroup } = await this.zoblox.session.post(Routes.groups.create, {
+        headers: { 
+          'Content-Type': 'multipart/form-data' 
+        },
+        data
+      });
+      return await this.get(newGroup.id);
+    } catch (e) {
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
+    }
+  } 
+                                                              
   async search({ keyword, prioritizeExactMatch, firstGroup, limit, cursor }) {
     try {
       prioritizeExactMatch = prioritizeExactMatch || false, firstGroup = firstGroup || false, limit = limit || '', cursor = cursor || '';

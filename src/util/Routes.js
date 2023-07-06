@@ -90,6 +90,7 @@ module.exports = {
     wallPostUser: (GroupId, UserId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/wall/users/' + UserId + '/posts', 
     players: (GroupId, RoleId, limit, sortOrder, cursor) => RoleId !== '' ? https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/' + RoleId + '/users?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor : https + 'groups.roblox.com/v1/groups/' + GroupId + '/users?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     search: (keyword, prioritizeExactMatch, limit, cursor) => https + 'groups.roblox.com/v1/groups/search?keyword=' + keyword + '&prioritizeExactMatch=' + prioritizeExactMatch + '&limit=' + limit + '&cursor=' + cursor,
+    create: https + 'groups.roblox.com//v1/groups/create', 
     SocialLinks: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/social-links', 
     AuditLog: (GroupId, UserId, actionType, limit, sortOrder, cursor) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/audit-log?userId=' + UserId + '&actionType=' + actionType + '&limit=' + limit + '&sortOrder=' + sortOrder, 
     WallPosts: (GroupId, limit, sortOrder, cursor) => https + 'groups.roblox.com/v2/groups/' + GroupId + '/wall/posts?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor

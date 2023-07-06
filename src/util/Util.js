@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('node:fs'); 
   
 async function resolveImage(image, returnStream = false) { 
+  if (!image) throw new Error('The image is required to fulfill this request');
   let imageStream; 
   
   if (/^https?:\/\//.test(image)) { 

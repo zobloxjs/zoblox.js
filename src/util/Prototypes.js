@@ -10,8 +10,6 @@ const Universe = require('../structures/Universe.js');
 const Asset = require('../structures/Asset.js');
 
 //MeUser
-MeUser.prototype.changeDescription = require('../functions/me/changeDescription.js');
-MeUser.prototype.changeGender = require('../functions/me/changeGender.js');
 MeUser.prototype.declineAllFriendRequests = require('../functions/me/declineAllFriendRequests.js');
 MeUser.prototype.fetchBirthdate = require('../functions/me/fetchBirthdate.js');
 MeUser.prototype.fetchDescription  = require('../functions/me/fetchDescription.js');
@@ -20,6 +18,8 @@ MeUser.prototype.fetchGender = require('../functions/me/fetchGender.js');
 MeUser.prototype.fetchTransactions = require('../functions/me/fetchTransactions.js');
 MeUser.prototype.logout = require('../functions/me/logout.js');
 MeUser.prototype.removeClothes = require('../functions/me/removeClothes.js');
+MeUser.prototype.setDescription = require('../functions/me/setDescription.js');
+MeUser.prototype.setGender = require('../functions/me/setGender.js');
 MeUser.prototype.wearClothes = require('../functions/me/wearClothes.js');
 
 //Zoblox 
@@ -48,7 +48,6 @@ User.prototype.unblock = require('../functions/users/unblock.js');
 User.prototype.unfollow = require('../functions/users/unfollow.js');
 
 //Group
-Group.prototype.changeDescription = require('../functions/groups/changeDescription.js');
 Group.prototype.changeIcon = require('../functions/groups/changeIcon.js');
 Group.prototype.changeName = require('../functions/groups/changeName.js');
 Group.prototype.changeOwner = require('../functions/groups/changeOwner.js');
@@ -67,7 +66,8 @@ Group.prototype.fetchWallPosts = require('../functions/groups/fetchWallPosts.js'
 Group.prototype.leave = require('../functions/groups/leave.js');
 Group.prototype.logoURL = require('../functions/groups/logoURL.js');
 Group.prototype.payouts = require('../functions/groups/payouts.js');
-Group.prototype.setShout = require('../functions/groups/setShout.js');
+Group.prototype.setDescription = require('../functions/groups/setDescription.js');
+Group.prototype.shout = require('../functions/groups/shout.js');
 Group.prototype.updateSettings = require('../functions/groups/updateSettings.js');
 
 //GroupMember
