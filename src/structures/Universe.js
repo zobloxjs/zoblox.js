@@ -16,8 +16,8 @@ class Universe {
     this.playing = Universe.playing;
     this.visits = Universe.visits;
     this.maxPlayers = Universe.maxPlayers;
-    this.created = Universe.created;
-    this.updated = Universe.updated;
+    this.created = new Date(Universe.created);
+    this.updated = new Date(Universe.updated);
     this.studioAccessToApisAllowed = Universe.studioAccessToApisAllowed;
     this.createVipServersAllowed = Universe.createVipServersAllowed;
     this.universeAvatarType = Universe.universeAvatarType;

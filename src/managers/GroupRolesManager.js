@@ -59,7 +59,7 @@ class GroupRolesManager {
       const { data: RolePermissions } = await this.zoblox.session.get(Routes.groups.rolePermissions(this.group.id, roleId));
       return new GroupRole(this.group, roleId, RolePermissions, this.zoblox);
     } catch (e) {
-      if (e.response && e.response.status === 404) return null;
+      if (e.response && e.response.status === 400) return null;
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
       throw new Error(err);
     }

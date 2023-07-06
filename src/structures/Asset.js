@@ -12,8 +12,8 @@ class Asset {
     this.AssetTypeId = Asset.AssetTypeId;
     this.Creator = Asset.Creator;
     this.IconImageAssetId = Asset.IconImageAssetId;
-    this.Created = Asset.Created;
-    this.Updated = Asset.Updated;
+    this.Created = new Date(Asset.Created);
+    this.Updated = new Date(Asset.Updated);
     this.PriceInRobux = Asset.PriceInRobux;
     this.PriceInTickets = Asset.PriceInTickets;
     this.Sales = Asset.Sales;

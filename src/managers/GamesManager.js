@@ -6,7 +6,7 @@ class GamesManager {
   constructor(zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
   }
-  async gets(ids) {
+  async fetch(ids) {
     try {
       if (!Array.isArray(ids)) throw new Error('The IDs must be array');
       ids = ids.join(',');
@@ -24,8 +24,8 @@ class GamesManager {
 
   async get(id) {
     try {
-      const UniverseData = await this.gets([id]);
-      return UniverseData.length ? new Universe(UniverseData.pop(), this.zoblox) : null;
+      const Details = await this.fetch([id]);
+      return Details.length ? new Universe(Details.pop(), this.zoblox) : null;
     } catch (err) {
       if (err.message === '400 No universe IDs were specified.') return null;
       throw new Error(err.message);
