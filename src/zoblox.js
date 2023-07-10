@@ -29,9 +29,8 @@ class Zoblox extends EventEmitter {
   }
   
   destroy() {
-    delete this.session.headers;
-    delete this.session.cookie;
-    delete this.session.xcsrf;
+    delete this.session.headers['Cookie'];
+    delete this.session.headers['X-CSRF-TOKEN'];
   }
 };
 module.exports = Zoblox;

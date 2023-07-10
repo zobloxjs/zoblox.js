@@ -6,7 +6,7 @@ module.exports = async function(requests) {
   const defaults = {
     type: 'AvatarBust',
     format: 'png',
-    isCircular: true,
+    isCircular: false,
   };
 
   requests.forEach((item) => {

@@ -18,7 +18,7 @@ async function resolveImage(image, returnStream = false) {
     imageStream = image; 
     returnStream = true;
   } else { 
-    throw new Error('Unsupported image type'); 
+    throw new TypeError('Unsupported image type'); 
   } 
   
   if (returnStream) { 

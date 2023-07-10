@@ -5,8 +5,11 @@ class GroupMembersManager {
   constructor(Group, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
     Object.defineProperty(this, 'group', { value: Group });
-    Object.defineProperty(this, 'me', { value: this.zoblox.me ? this.get(this.zoblox.me.id) : null });
   }
+  get me() {
+    return !this.zoblox.me ? null : this.get(this.zoblox.me.id);
+  } 
+  
   async fetch({ roleId, limit, sortOrder, cursor } = {}) {
     try {
       roleId = roleId || '', limit = limit || 100, sortOrder = sortOrder || 'Desc', cursor = cursor || '';

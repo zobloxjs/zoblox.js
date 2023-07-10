@@ -9,15 +9,15 @@ class GroupsManager {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
   }
   async create(name, options = {}) {
-    try {
-      const data = new FormData();
-      data.append('name', name);
-      data.append('File', await resolveImage(options.icon), 'image.jpg');
+    const data = new FormData();
+    data.append('name', name);
+    data.append('File', await resolveImage(options.icon), 'image.jpg');
     
-      if (options.description) data.append('description', options.description);
-      if (options.publicGroup !== undefined) data.append('publicGroup', '' + options.publicGroup);
-      if (options.buildersClubMembersOnly !== undefined) data.append('buildersClubMembersOnly', '' + options.buildersClubMembersOnly);
+    if (options.description) data.append('description', options.description);
+    if (options.publicGroup !== undefined) data.append('publicGroup', '' + options.publicGroup);
+    if (options.buildersClubMembersOnly !== undefined) data.append('buildersClubMembersOnly', '' + options.buildersClubMembersOnly);
 
+    try {
       const { data: newGroup } = await this.zoblox.session.post(Routes.groups.create, {
         headers: { 
           'Content-Type': 'multipart/form-data' 

@@ -14,26 +14,22 @@ class Rest {
   }
   async setCookie(Cookie) {
     const XCSRF = await generatorXcsrf(Cookie);
-    this.cookie = Cookie;
-    this.xcsrf = XCSRF;
     this.headers = { ...this.headers, 'Cookie': '.ROBLOSECURITY=' + Cookie, 'X-CSRF-TOKEN': XCSRF };
   }
   
   async XCSRFRenewal() {
-    if (this.headers) {
+    if (!this.headers['Cookie'] || !this.headers['X-CSRF-TOKEN']) return;
     try {
-      const newXcsrf = await generatorXcsrf(this.cookie);
-      if (newXcsrf === this.xcsrf) return;
-      this.xcsrf = newXcsrf;
+      const newXcsrf = await generatorXcsrf(this.headers['Cookie']);
+      if (newXcsrf === this.headers['X-CSRF-TOKEN']) return;
       this.headers['X-CSRF-TOKEN'] = newXcsrf;
       return newXcsrf;
     } catch {
       return;
     } 
   } 
-} 
   
-  async get(Url, Options = {}, headers = this.headers) {                                               
+  async get(url, Options = {}, headers = this.headers) {                                               
     Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
     
     if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
@@ -41,56 +37,51 @@ class Rest {
     if (Options.headers) delete Options.headers;
     
     delete Options.XCSRFRenewal;                                                     
-    const Request = axios.create({ method: 'GET' });
-    return await Request({ url: Url, headers, ...Options });
+    return await axios({ url, headers, method: 'GET', ...Options });
   }
   
-  async post(Url, Options = {}, headers = this.headers) { 
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true; 
-    
-    if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
-    if (Options.headers) (headers = { ...headers, ...Options.headers });                                                    
-    if (Options.headers) delete Options.headers;       
-    
-    delete Options.XCSRFRenewal;                                                     
-    const Request = axios.create({ method: 'POST' });                                                        
-    return await Request({ url: Url, headers, ...Options });
-  }
-  
-  async put(Url, Options = {}, headers = this.headers) {
+  async post(url, Options = {}, headers = this.headers) {                                               
     Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
-    
-    if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
-    if (Options.headers) (headers = { ...headers, ...Options.headers });                                                    
-    if (Options.headers) delete Options.headers;     
-    
-    delete Options.XCSRFRenewal;                                                  
-    const Request = axios.create({ method: 'PUT' });
-    return await Request({ url: Url, headers, ...Options });
-  }
-  
-  async patch(Url, Options = {}, headers = this.headers) {
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
-    
-    if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
-    if (Options.headers) (headers = { ...headers, ...Options.headers });                                                    
-    if (Options.headers) delete Options.headers;     
-    
-    delete Options.XCSRFRenewal;                                                      
-    const Request = axios.create({ method: 'PATCH' });
-    return await Request({ url: Url, headers, ...Options });
-  }
-  
-  async delete(Url, Options = {}, headers = this.headers) {
-    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;   
     
     if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
     if (Options.headers) (headers = { ...headers, ...Options.headers });                                                    
     if (Options.headers) delete Options.headers;
     
-    delete Options.XCSRFRenewal;                                                       
-    const Request = axios.create({ method: 'DELETE' });
-    return await Request({ url: Url, headers, ...Options });
+    delete Options.XCSRFRenewal;                                                     
+    return await axios({ url, headers, method: 'POST', ...Options });
+  }
+  
+  async put(url, Options = {}, headers = this.headers) {                                               
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
+    
+    if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
+    if (Options.headers) (headers = { ...headers, ...Options.headers });                                                    
+    if (Options.headers) delete Options.headers;
+    
+    delete Options.XCSRFRenewal;   
+    return await axios({ url, headers, method: 'PUT', ...Options });
+  }
+  
+  async patch(url, Options = {}, headers = this.headers) {                                               
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
+    
+    if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
+    if (Options.headers) (headers = { ...headers, ...Options.headers });                                                    
+    if (Options.headers) delete Options.headers;
+    
+    delete Options.XCSRFRenewal;                                                     
+    return await axios({ url, headers, method: 'PATCH', ...Options });
+  }
+  
+  async delete(url, Options = {}, headers = this.headers) {                                               
+    Options.XCSRFRenewal = Options.XCSRFRenewal ?? true;
+    
+    if (Options.XCSRFRenewal) await this.XCSRFRenewal();                               
+    if (Options.headers) (headers = { ...headers, ...Options.headers });                                                    
+    if (Options.headers) delete Options.headers;
+    
+    delete Options.XCSRFRenewal;                                                     
+    return await axios({ url, headers, method: 'DELETE', ...Options });
   }
 };
 module.exports = Rest;
