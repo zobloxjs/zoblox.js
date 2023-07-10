@@ -1,3 +1,3 @@
 module.exports = function() {
-  return this.session.headers['X-CSRF-TOKEN'];
+  return this.session.XcsrfToken;
 };

@@ -15,14 +15,17 @@ class Rest {
   async setCookie(Cookie) {
     const XCSRF = await generatorXcsrf(Cookie);
     this.headers = { ...this.headers, 'Cookie': '.ROBLOSECURITY=' + Cookie, 'X-CSRF-TOKEN': XCSRF };
+    this.Cookie = Cookie;
+    this.XcsrfToken = XCSRF;
   }
   
   async XCSRFRenewal() {
     if (!this.headers['Cookie'] || !this.headers['X-CSRF-TOKEN']) return;
     try {
-      const newXcsrf = await generatorXcsrf(this.headers['Cookie']);
+      const newXcsrf = await generatorXcsrf(this.Cookie);
       if (newXcsrf === this.headers['X-CSRF-TOKEN']) return;
       this.headers['X-CSRF-TOKEN'] = newXcsrf;
+      this.XcsrfToken = newXcsrf;
       return newXcsrf;
     } catch {
       return;
