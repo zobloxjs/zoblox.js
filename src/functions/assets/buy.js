@@ -8,7 +8,8 @@ module.exports = async function() {
       expectedCurrency: 1,
       expectedPrice,
       expectedSellerId
-  }});
+    }
+  });
   if (!response.purchased) throw new Error(response.errorMsg);
   return response;
 }

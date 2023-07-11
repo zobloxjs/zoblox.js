@@ -16,10 +16,12 @@ module.exports = function({ sizes, format, type, isCircular } = {}) {
     case 'headshot':
       const imageUrlHeadshot = Routes.RbxThumbnailURL + this.avatar.headshot + `/${data.x}/${data.y}/AvatarHeadshot/${format}${isCircular ? '/isCircular' : '' }`;
       return imageUrlHeadshot; 
+      break;
     case 'body':
       const imageUrlBody = Routes.RbxThumbnailURL + this.avatar.body + `/${data.x}/${data.y}/Avatar/${format}${isCircular ? '/isCircular' : '' }`;
       return imageUrlBody;
       break;
     default:
+    throw new TypeError('Unsupported image type');
   }
 }

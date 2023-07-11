@@ -70,6 +70,7 @@ module.exports = {
   groups: {
     link: (GroupId) => host + 'groups/' + GroupId, 
     payouts: (GroupId, recurring) => https + 'groups.roblox.com/v1/groups/' + GroupId + `/payouts${recurring ? '/recurring' : '/'}`, 
+    payoutRestriction: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/payout-restriction', 
     userRoles: (UserId) => https + 'groups.roblox.com/v2/users/' + UserId + '/groups/roles',
     settings: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/settings', 
     group: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId, 

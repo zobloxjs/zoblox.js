@@ -1,6 +1,6 @@
 const Routes = require('../../util/Routes.js');
 
-module.exports = async function({ assetId }) {
+module.exports = async function(assetId) {
   try {
     const { data: response } = await this.zoblox.session.post(Routes.avatar.remove(assetId));
     return response;

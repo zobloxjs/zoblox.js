@@ -5,7 +5,8 @@ module.exports = async function() {
     data: 'assetId=' + this.AssetId, 
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-  }});
+    }
+  });
   if (!response.isValid) throw new Error(response.error);
   return response;
 }

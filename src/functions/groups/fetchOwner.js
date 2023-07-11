@@ -1,3 +1,3 @@
-module.exports = async function() {
-  return await this.zoblox.users.get(this.owner.userId);
+module.exports = function() {
+  return this.zoblox.users.get(this.owner.userId);
 }

@@ -12,6 +12,6 @@ module.exports = function({ sizes, format, isCircular } = {}) {
     y: +sizes[1]
   }
     
-  const ImageUrl = Routes.RbxThumbnailURL + this.logo + `/${data.x}/${data.y}/Image/${format}${isCircular ? '/isCircular' : '' }`;
-  return ImageUrl; 
+  const imageUrl = Routes.RbxThumbnailURL + this.logo + `/${data.x}/${data.y}/Image/${format}${isCircular ? '/isCircular' : '' }`;
+  return imageUrl; 
 }

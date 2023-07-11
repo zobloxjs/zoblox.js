@@ -2,11 +2,11 @@ const FormData = require('form-data');
 const { resolveImage } = require('../../util/Util.js');
 const Routes = require('../../util/Routes.js');
 
-module.exports = async function(File) {
-  try {
-    const data = new FormData();
-    data.append('File', await resolveImage(File), 'image.jpg');
+module.exports = async function(newIcon) {
+  const data = new FormData();
+  data.append('File', await resolveImage(newIcon), 'image.jpg');
     
+  try { 
     const response = await this.zoblox.session.patch(Routes.groups.icon(this.id), { 
       headers: { 
         'Content-Type': 'multipart/form-data' 
