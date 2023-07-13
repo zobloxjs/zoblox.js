@@ -14,6 +14,10 @@ class User {
     this.displayName = User.displayName;
     this.profile = Profile;
   }
+  get createdTimestamp() {
+    return +this.created;
+  }
+  
   get profileURL() {
     return Routes.users.profile(this.id);
   } 

@@ -2,7 +2,7 @@ const Routes = require('../../util/Routes.js');
 
 module.exports = async function() {
   try {
-    const { data: resaleData } = await this.zoblox.session.get(Routes.economy.resaleData(this.AssetId));
+    const { data: resaleData } = await this.zoblox.session.get(Routes.economy.assetResaleData(this.AssetId));
     resaleData.priceDataPoints.map((priceDataPoint) => {
       priceDataPoint.date = new Date(priceDataPoint.date);
     });

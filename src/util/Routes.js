@@ -14,16 +14,13 @@ module.exports = {
     profile: (UserId) => host + 'users/' + UserId, 
     usernames: https + 'users.roblox.com/v1/usernames/users', 
     users: (UserId) => https + 'users.roblox.com/v1/users/' + UserId, 
-    description: https + 'users.roblox.com/v1/description', 
-    birthdate: https + 'users.roblox.com/v1/birthdate', 
-    gender: https + 'users.roblox.com/v1/gender', 
   }, 
   thumbnails: {
-    groups: (Url) => https + 'thumbnails.roblox.com/v1/groups/icons' + Url, 
+    groups: (Options) => https + 'thumbnails.roblox.com/v1/groups/icons' + Options, 
     batch: https + 'thumbnails.roblox.com/v1/batch', 
     users: {
-      headshot: (Url) => https + 'thumbnails.roblox.com/v1/users/avatar-headshot' + Url, 
-      body: (Url) => https + 'thumbnails.roblox.com/v1/users/avatar' + Url, 
+      headshot: (Options) => https + 'thumbnails.roblox.com/v1/users/avatar-headshot' + Options, 
+      body: (Options) => https + 'thumbnails.roblox.com/v1/users/avatar' + Options, 
     }
   }, 
   avatar: {
@@ -37,23 +34,28 @@ module.exports = {
   accountsettings: {
     block: (UserId) => https + 'accountsettings.roblox.com/v1/users/' + UserId + '/block',
     unblock: (UserId) => https + 'accountsettings.roblox.com/v1/users/' + UserId + '/unblock', 
+    blockedUsersDetails: https + 'accountsettings.roblox.com/v1/users/get-detailed-blocked-users', 
   }, 
+  accountinformation: {
+    promisesChannelsUser: (UserId) => https + 'accountinformation.roblox.com/v1/users/' + UserId + '/promotion-channels', 
+    promisesChannels: https + 'accountinformation.roblox.com/v1/promotion-channels', 
+    description: https + 'accountinformation.roblox.com/v1/description', 
+    birthdate: https + 'accountinformation.roblox.com/v1/birthdate', 
+    gender: https + 'accountinformation.roblox.com/v1/gender', 
+  },
   chat: {
     sendmessage: https + 'chat.roblox.com/v2/send-message', 
   }, 
   economy: {
-    currency: (GroupId) => https + 'economy.roblox.com/v1/groups/' + GroupId + '/currency', 
-    revenueSummary: (GroupId, timeFrame) => https + 'economy.roblox.com/v1/groups/' + GroupId + '/revenue/summary/' + timeFrame, 
+    groupCurrency: (GroupId) => https + 'economy.roblox.com/v1/groups/' + GroupId + '/currency', 
+    groupRevenueSummary: (GroupId, timeFrame) => https + 'economy.roblox.com/v1/groups/' + GroupId + '/revenue/summary/' + timeFrame, 
     groupTransactions: (GroupId, transactionType, limit, sortOrder, cursor) => https + 'economy.roblox.com/v2/groups/' + GroupId + '/transactions?transactionType=' + transactionType + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     userTransactions: (UserId, transactionType, limit, sortOrder, cursor) => https + 'economy.roblox.com/v2/users/' + UserId + '/transactions?transactionType=' + transactionType + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     assetDetails: (AssetId) => https + 'economy.roblox.com/v2/assets/' + AssetId + '/details', 
     purchasesProduct: (ProductId) => https + 'economy.roblox.com/v1/purchases/products/' + ProductId, 
-    resaleData: (AssetId) => https + 'economy.roblox.com/v1/assets/' + AssetId + '/resale-data', 
-    resellers: (AssetId, limit, cursor) => https + 'economy.roblox.com/v1/assets/' + AssetId + '/resellers?limit=' + limit + '&cursor=' + cursor
+    assetResaleData: (AssetId) => https + 'economy.roblox.com/v1/assets/' + AssetId + '/resale-data', 
+    assetResellers: (AssetId, limit, cursor) => https + 'economy.roblox.com/v1/assets/' + AssetId + '/resellers?limit=' + limit + '&cursor=' + cursor
   },
-  accountinformation: {
-    promisesChannels: (UserId) => https + 'accountinformation.roblox.com/v1/users/' + UserId + '/promotion-channels', 
-  }, 
   itemconfiguration: {
     getAssets: (GroupId, assetType, limit, sortOrder, cursor) => https + 'itemconfiguration.roblox.com/v1/creations/get-assets?groupId=' + GroupId + '&assetType=' + assetType + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
   }, 
@@ -75,13 +77,14 @@ module.exports = {
     settings: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/settings', 
     group: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId, 
     users: (GroupId, UserId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/users/' + UserId, 
-    joinRequests: (GroupId, limit, sortOrder, cursor) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/join-requests?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
+    requests: (GroupId, limit, sortOrder, cursor) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/join-requests?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     request: (GroupId, UserId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/join-requests/users/' + UserId, 
     changeOwner: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/change-owner', 
     roles: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles', 
     role: (GroupId, RoleId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/rolesets/' + RoleId, 
     rolePermissions: (GroupId, RoleId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/' + RoleId + '/permissions', 
     rolesPermissions: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/permissions', 
+    guestRolePermissions: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/guest/permissions', 
     roleCreate: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/rolesets/create', 
     description: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/description', 
     name: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/name', 
@@ -89,18 +92,22 @@ module.exports = {
     icon: (GroupId) => https + 'groups.roblox.com/v1/groups/icon?groupId=' + GroupId, 
     wallPost: (GroupId, PostId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/wall/posts/' + PostId, 
     wallPostUser: (GroupId, UserId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/wall/users/' + UserId + '/posts', 
+    membership: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/membership',
     players: (GroupId, RoleId, limit, sortOrder, cursor) => RoleId !== '' ? https + 'groups.roblox.com/v1/groups/' + GroupId + '/roles/' + RoleId + '/users?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor : https + 'groups.roblox.com/v1/groups/' + GroupId + '/users?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     search: (keyword, prioritizeExactMatch, limit, cursor) => https + 'groups.roblox.com/v1/groups/search?keyword=' + keyword + '&prioritizeExactMatch=' + prioritizeExactMatch + '&limit=' + limit + '&cursor=' + cursor,
+    searchLookUp: (GroupName) => https + 'groups.roblox.com/v1/groups/search/lookup?groupName=' + GroupName,
     create: https + 'groups.roblox.com//v1/groups/create', 
-    SocialLinks: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/social-links', 
-    AuditLog: (GroupId, UserId, actionType, limit, sortOrder, cursor) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/audit-log?userId=' + UserId + '&actionType=' + actionType + '&limit=' + limit + '&sortOrder=' + sortOrder, 
-    WallPosts: (GroupId, limit, sortOrder, cursor) => https + 'groups.roblox.com/v2/groups/' + GroupId + '/wall/posts?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor
+    socialLinks: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/social-links', 
+    auditLog: (GroupId, UserId, actionType, limit, sortOrder, cursor) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/audit-log?userId=' + UserId + '&actionType=' + actionType + '&limit=' + limit + '&sortOrder=' + sortOrder, 
+    nameHistory: (GroupId, limit, sortOrder, cursor) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/name-history?limit=' + limit + '&sortOrder=' + sortOrder, 
+    wallPosts: (GroupId, limit, sortOrder, cursor) => https + 'groups.roblox.com/v2/groups/' + GroupId + '/wall/posts?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor
   }, 
   games: {
     groupGames: (GroupId, accessFilter, limit, sortOrder, cursor) => https + 'games.roblox.com/v2/groups/' + GroupId + '/games?accessFilter=' + accessFilter + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     userGames: (UserId, accessFilter, limit, sortOrder, cursor) => https + 'games.roblox.com/v2/users/' + UserId + '/games?accessFilter=' + accessFilter + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     userFavoriteGames: (UserId, accessFilter, limit, sortOrder, cursor) => https + 'games.roblox.com/v2/users/' + UserId + '/favorite/games?accessFilter=' + accessFilter + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     universes: (IDs) => https + 'games.roblox.com/v1/games?universeIds=' + IDs, 
+    vipServersUniverse: (UniverseId) => https + 'games.roblox.com/v1/games/vip-servers' + UniverseId, 
     passes: (UniverseId, limit, sortOrder, cursor) => https + 'games.roblox.com/v1/games/' + UniverseId +' /game-passes?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     SocialLinks: (UniverseId) => https + 'games.roblox.com/v1/games/' + UniverseId + '/social-links/list', 
   }, 

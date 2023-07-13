@@ -28,6 +28,16 @@ class GroupRolesManager {
     }
   } 
   
+  async fetchGuestPermissions() {
+    try {
+      const { data: GuestRolePermissions } = await this.zoblox.session.get(Routes.groups.guestRolePermissions(this.group.id));
+      return GuestRolePermissions;
+    } catch (e) {
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
+    }
+  } 
+  
   async fetch() {
     try {
       const { data: Roles } = await this.zoblox.session.get(Routes.groups.roles(this.group.id));
@@ -42,7 +52,7 @@ class GroupRolesManager {
     try {
       if (roleId) {
         const Roles = await this.fetch();
-        const Role = Roles.roles.find(role => role.id === +roleId);
+        const Role = Roles.roles.find(role => role.id == roleId);
         return Role ?? null;
       } else if (roleName) {
         const Roles = await this.fetch();

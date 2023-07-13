@@ -26,5 +26,8 @@ class Universe {
     this.isFavoritedByUser = Universe.isFavoritedByUser;
     this.favoritedCount = Universe.favoritedCount;
   }
+  get createdTimestamp() {
+    return +this.created;
+  }
 };
 module.exports = Universe;

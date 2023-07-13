@@ -5,5 +5,8 @@ class GroupRequest {
     this.requester = Request.requester;
     this.created = new Date(Request.created);
   }
+  get createdTimestamp() {
+    return +this.created;
+  }
 };
 module.exports = GroupRequest;

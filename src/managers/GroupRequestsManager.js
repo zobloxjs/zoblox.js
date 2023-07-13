@@ -6,10 +6,10 @@ class RequestsManager {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
     Object.defineProperty(this, 'group', { value: Group });	
   }
-  async fetch({ sortOrder, limit, cursor } = {}) {
+  async fetch({ limit, sortOrder, cursor } = {}) {
     try {
-      sortOrder = sortOrder || 'Asc', limit = limit || 100, cursor = cursor || '';
-      const { data: Requests } = await this.zoblox.session.get(Routes.groups.joinRequests(this.group.id, limit, sortOrder, cursor));
+      limit = limit || 100, sortOrder = sortOrder || 'Asc', cursor = cursor || '';
+      const { data: Requests } = await this.zoblox.session.get(Routes.groups.requests(this.group.id, limit, sortOrder, cursor));
       Requests.data.map((Request) => {
         Request.created = new Date(Request.created);
       });

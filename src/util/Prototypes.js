@@ -12,14 +12,17 @@ const Asset = require('../structures/Asset.js');
 //MeUser
 MeUser.prototype.declineAllFriendRequests = require('../functions/me/declineAllFriendRequests.js');
 MeUser.prototype.fetchBirthdate = require('../functions/me/fetchBirthdate.js');
+MeUser.prototype.fetchBlockedUsers = require('../functions/me/fetchBlockedUsers.js');
 MeUser.prototype.fetchDescription  = require('../functions/me/fetchDescription.js');
 MeUser.prototype.fetchFriendRequests = require('../functions/me/fetchFriendRequests.js');
 MeUser.prototype.fetchGender = require('../functions/me/fetchGender.js');
+MeUser.prototype.fetchSocialLinks = require('../functions/me/fetchSocialLinks.js');
 MeUser.prototype.fetchTransactions = require('../functions/me/fetchTransactions.js');
 MeUser.prototype.logout = require('../functions/me/logout.js');
 MeUser.prototype.removeClothes = require('../functions/me/removeClothes.js');
 MeUser.prototype.setDescription = require('../functions/me/setDescription.js');
 MeUser.prototype.setGender = require('../functions/me/setGender.js');
+MeUser.prototype.setSocialLinks = require('../functions/me/setSocialLinks.js');
 MeUser.prototype.wearClothes = require('../functions/me/wearClothes.js');
 
 //Zoblox 
@@ -54,6 +57,8 @@ Group.prototype.fetchAssets = require('../functions/groups/fetchAssets.js');
 Group.prototype.fetchAuditLog = require('../functions/groups/fetchAuditLog.js');
 Group.prototype.fetchCurrency = require('../functions/groups/fetchCurrency.js');
 Group.prototype.fetchGames = require('../functions/groups/fetchGames.js');
+Group.prototype.fetchMemberShip = require('../functions/groups/fetchMemberShip.js');
+Group.prototype.fetchNameHistory = require('../functions/groups/fetchNameHistory.js');
 Group.prototype.fetchOwner = require('../functions/groups/fetchOwner.js');
 Group.prototype.fetchPayoutPercentages = require('../functions/groups/fetchPayoutPercentages.js');
 Group.prototype.fetchPayoutsRevenue = require('../functions/groups/fetchPayoutsRevenue.js');
@@ -73,11 +78,11 @@ Group.prototype.setOwner = require('../functions/groups/setOwner.js');
 Group.prototype.updateSettings = require('../functions/groups/updateSettings.js');
 
 //GroupMember
-GroupMember.prototype.changeRole = require('../functions/groups/members/changeRole.js');
 GroupMember.prototype.fetchRole = require('../functions/groups/members/fetchRole.js');
 GroupMember.prototype.hasRole = require('../functions/groups/members/hasRole.js');
 GroupMember.prototype.kick = require('../functions/groups/members/kick.js');
 GroupMember.prototype.payout = require('../functions/groups/members/payout.js');
+GroupMember.prototype.setRole = require('../functions/groups/members/setRole.js');
 
 //GroupRequest 
 GroupRequest.prototype.accept = require('../functions/groups/requests/accept.js');

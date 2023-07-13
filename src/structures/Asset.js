@@ -30,6 +30,10 @@ class Asset {
     this.CollectibleItemId = Asset.CollectibleItemId;
     this.CollectibleProductId = Asset.CollectibleProductId;
   }
+  get createdTimestamp() {
+    return +this.Created;
+  }
+  
   get linkURL() {
     return Routes.assetsLink(this.AssetId);
   } 

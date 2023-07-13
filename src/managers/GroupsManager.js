@@ -46,6 +46,16 @@ class GroupsManager {
     }
   } 
   
+  async searchByName(groupName, prioritizeExactMatch = true) {
+    try {
+      const { data: { data: Groups } } = await this.zoblox.session.get(Routes.groups.searchLookUp(groupName));
+      return prioritizeExactMatch ? Groups[0] : Groups;
+    } catch (e) {
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
+    }
+  } 
+  
   async get(groupId) {
     try {
       const { data: GroupData } = await this.zoblox.session.get(Routes.groups.group(groupId));

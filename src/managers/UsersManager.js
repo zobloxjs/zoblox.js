@@ -48,14 +48,14 @@ class UsersManager {
     try {
       const profile = {};      
       const { data: user } = await this.zoblox.session.get(Routes.users.users(userId));
-      const { data: { count: friends } } = await this.zoblox.session.get(Routes.friends.friendsCount(user.id));
-      const { data: { count: followings } } = await this.zoblox.session.get(Routes.friends.followingsCount(user.id));
-      const { data: { count: followers } } = await this.zoblox.session.get(Routes.friends.followersCount(user.id));
+      const { data: { count: friendsCount } } = await this.zoblox.session.get(Routes.friends.friendsCount(user.id));
+      const { data: { count: followingsCount } } = await this.zoblox.session.get(Routes.friends.followingsCount(user.id));
+      const { data: { count: followersCount } } = await this.zoblox.session.get(Routes.friends.followersCount(user.id));
 
       user.avatar = await fetchAvatar(userId);
-      profile.friendsCount = friends;
-      profile.followingsCount = followings;
-      profile.followersCount = followers;
+      profile.friendsCount = friendsCount;
+      profile.followingsCount = followingsCount;
+      profile.followersCount = followersCount;
       
       return new User(user, profile, this.zoblox);
     } catch (e) {
