@@ -8,14 +8,14 @@ class GroupsManager {
   constructor(zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
   }
-  async create(name, options = {}) {
+  async create(name, options = {}) {    
     const data = new FormData();
     data.append('name', name);
     data.append('File', await resolveImage(options.icon), 'image.jpg');
-    
-    if (options.description) data.append('description', options.description);
-    if (options.publicGroup !== undefined) data.append('publicGroup', '' + options.publicGroup);
-    if (options.buildersClubMembersOnly !== undefined) data.append('buildersClubMembersOnly', '' + options.buildersClubMembersOnly);
+        
+    if ('description' in options) data.append('description', options.description);
+    if ('publicGroup' in options) data.append('publicGroup', options.publicGroup.toString());
+    if ('buildersClubMembersOnly' in options) data.append('buildersClubMembersOnly', options.buildersClubMembersOnly.toString());
 
     try {
       const { data: newGroup } = await this.zoblox.session.post(Routes.groups.create, {
@@ -50,6 +50,21 @@ class GroupsManager {
     try {
       const { data: { data: Groups } } = await this.zoblox.session.get(Routes.groups.searchLookUp(groupName));
       return prioritizeExactMatch ? Groups[0] : Groups;
+    } catch (e) {
+      const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
+      throw new Error(err);
+    }
+  } 
+  
+  async fetch(ids) {
+    try {
+      if (!Array.isArray(ids)) throw new Error('The IDs must be array');
+      ids = ids.join(',');
+      const { data: { data: Groups } } = await this.zoblox.session.get(Routes.groups.groups(ids));
+      Groups.map((Group) => {
+        Group.created = new Date(Group.created);
+      });
+      return Groups;
     } catch (e) {
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
       throw new Error(err);

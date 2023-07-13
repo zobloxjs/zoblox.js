@@ -76,6 +76,7 @@ module.exports = {
     userRoles: (UserId) => https + 'groups.roblox.com/v2/users/' + UserId + '/groups/roles',
     settings: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/settings', 
     group: (GroupId) => https + 'groups.roblox.com/v1/groups/' + GroupId, 
+    groups: (GroupIds) => https + 'groups.roblox.com/v2/groups?groupIds=' + GroupIds, 
     users: (GroupId, UserId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/users/' + UserId, 
     requests: (GroupId, limit, sortOrder, cursor) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/join-requests?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
     request: (GroupId, UserId) => https + 'groups.roblox.com/v1/groups/' + GroupId + '/join-requests/users/' + UserId, 
