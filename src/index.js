@@ -6,9 +6,8 @@ exports.REST = require('./rest/RESTManager.js');
 exports.Routes = require('./util/Routes.js');
 exports.Events = require('./util/Events.js');
 exports.defaults = require('./util/Defaults.js');
-exports.WebSocketEvents = require('./util/WebSocketEvents.js');
-exports.WebSocketTypes = require('./util/types/WebSocketTypes.js');
-exports.PresencesTypes = require('./util/types/PresencesTypes.js');
+exports.AssetTypes = require('./util/types/AssetTypes.js');
+exports.PresenceTypes = require('./util/types/PresenceTypes.js');
 
 // Managers
 exports.AssetsManager = require('./managers/AssetsManager.js');

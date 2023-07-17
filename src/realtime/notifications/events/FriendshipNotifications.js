@@ -1,13 +1,11 @@
-const WebSocketEvents = require('../../../util/WebSocketEvents.js');
-const WebSocketTypes = require('../../../util/types/WebSocketTypes.js');
 const Events = require('../../../util/Events.js');
 
 module.exports = {
-  name: WebSocketEvents.FriendshipNotifications,
+  name: 'FriendshipNotifications',
   async function(notifications, data) {
-    if (data.Type === WebSocketTypes.FriendshipRequested) {
+    if (data.Type === 'FriendshipRequested') {
       notifications.emit(Events.FriendRequest, data.EventArgs.UserId1);
-    } else if (data.Type === WebSocketTypes.FriendshipDeclined) {
+    } else if (data.Type === 'FriendshipDeclined') {
       notifications.emit(Events.RemoveFriendRequest, data.EventArgs.UserId1);
     } 
   },

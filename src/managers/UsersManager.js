@@ -1,5 +1,4 @@
 const Routes = require('../util/Routes.js');
-const PresencesTypes = require('../util/types/PresencesTypes.js');
 const fetchAvatar = require('../methods/fetchAvatar.js');
 const User = require('../structures/User.js');
 
