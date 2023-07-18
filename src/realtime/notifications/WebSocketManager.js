@@ -11,7 +11,7 @@ class WebSocketManager {
   }
   connect() {
     const ws = new WebSocketClient(Routes.wss.notifications, ['usernotificationhub'], 3, true);
-    ws.headers.Cookie = '.ROBLOSECURITY=' + this.zoblox.session.cookie;
+    ws.headers.Cookie = '.ROBLOSECURITY=' + this.zoblox.session.Cookie;
     ws.serviceHandlers.connected = () => {};
     ws.start();
     
