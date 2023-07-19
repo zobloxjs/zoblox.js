@@ -53,6 +53,7 @@ User.prototype.unfollow = require('../functions/users/unfollow.js');
 //Group
 Group.prototype.deleteWallPost = require('../functions/groups/deleteWallPost.js');
 Group.prototype.deleteWallPostsByUser = require('../functions/groups/deleteWallPostsByUser.js');
+Group.prototype.editSettings = require('../functions/groups/editSettings.js');
 Group.prototype.fetchAssets = require('../functions/groups/fetchAssets.js');
 Group.prototype.fetchAuditLog = require('../functions/groups/fetchAuditLog.js');
 Group.prototype.fetchCurrency = require('../functions/groups/fetchCurrency.js');
@@ -75,7 +76,6 @@ Group.prototype.setDescription = require('../functions/groups/setDescription.js'
 Group.prototype.setIcon = require('../functions/groups/setIcon.js');
 Group.prototype.setName = require('../functions/groups/setName.js');
 Group.prototype.setOwner = require('../functions/groups/setOwner.js');
-Group.prototype.updateSettings = require('../functions/groups/updateSettings.js');
 
 //GroupMember
 GroupMember.prototype.fetchRole = require('../functions/groups/members/fetchRole.js');
@@ -90,7 +90,7 @@ GroupRequest.prototype.decline = require('../functions/groups/requests/decline.j
 
 //GroupRole
 GroupRole.prototype.delete = require('../functions/groups/roles/delete.js');
-GroupRole.prototype.update = require('../functions/groups/roles/update.js');
+GroupRole.prototype.edit = require('../functions/groups/roles/edit.js');
 
 //GamePass
 GamePass.prototype.edit = require('../functions/games/pass/edit.js');
