@@ -2,7 +2,7 @@ const Routes = require('../../util/Routes.js');
 
 module.exports = async function(message) {
   try {
-    const { data: Shout } = await this.zoblox.session.patch(Routes.groups.status(this.id), { data: { message } });    
+    const { data: Shout } = await this.zoblox.rest.patch(Routes.groups.status(this.id), { data: { message } });    
     
     Shout.created = new Date(Shout.created);
     Shout.updated = new Date(Shout.updated);

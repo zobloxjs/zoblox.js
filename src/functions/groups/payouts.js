@@ -2,7 +2,7 @@ const Routes = require('../../util/Routes.js');
 
 module.exports = async function(Recipients, recurring = false, usePercentage = false) {
   try {
-    const response = await this.zoblox.session.post(Routes.groups.payouts(this.id, recurring), {
+    const response = await this.zoblox.rest.post(Routes.groups.payouts(this.id, recurring), {
       data: {
         PayoutType: recurring ? 'Percentage' : (usePercentage ? 'Percentage' : 'FixedAmount'),
         Recipients

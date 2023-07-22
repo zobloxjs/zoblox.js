@@ -8,7 +8,7 @@ class GroupRolesManager {
   }
   async create(data) {
     try {
-      const { data: Role } = await this.zoblox.session.post(Routes.groups.roleCreate(this.group.id), {
+      const { data: Role } = await this.zoblox.rest.post(Routes.groups.roleCreate(this.group.id), {
         data
       });
       return Role;
@@ -20,7 +20,7 @@ class GroupRolesManager {
   
   async fetchPermissions() {
     try {
-      const { data: { data: RolesPermissions } } = await this.zoblox.session.get(Routes.groups.rolesPermissions(this.group.id));
+      const { data: { data: RolesPermissions } } = await this.zoblox.rest.get(Routes.groups.rolesPermissions(this.group.id));
       return RolesPermissions;
     } catch (e) {
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
@@ -30,7 +30,7 @@ class GroupRolesManager {
   
   async fetchGuestPermissions() {
     try {
-      const { data: GuestRolePermissions } = await this.zoblox.session.get(Routes.groups.guestRolePermissions(this.group.id));
+      const { data: GuestRolePermissions } = await this.zoblox.rest.get(Routes.groups.guestRolePermissions(this.group.id));
       return GuestRolePermissions;
     } catch (e) {
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
@@ -40,7 +40,7 @@ class GroupRolesManager {
   
   async fetch() {
     try {
-      const { data: Roles } = await this.zoblox.session.get(Routes.groups.roles(this.group.id));
+      const { data: Roles } = await this.zoblox.rest.get(Routes.groups.roles(this.group.id));
       return Roles;
     } catch (e) {
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
@@ -66,7 +66,7 @@ class GroupRolesManager {
   
   async get(roleId) {
     try {
-      const { data: RolePermissions } = await this.zoblox.session.get(Routes.groups.rolePermissions(this.group.id, roleId));
+      const { data: RolePermissions } = await this.zoblox.rest.get(Routes.groups.rolePermissions(this.group.id, roleId));
       return new GroupRole(this.group, roleId, RolePermissions, this.zoblox);
     } catch (e) {
       if (e.response && e.response.status === 400) return null;

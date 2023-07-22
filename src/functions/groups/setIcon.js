@@ -7,7 +7,7 @@ module.exports = async function(newIcon) {
   data.append('File', await resolveImage(newIcon), 'image.jpg');
     
   try { 
-    const response = await this.zoblox.session.patch(Routes.groups.icon(this.id), { 
+    const response = await this.zoblox.rest.patch(Routes.groups.icon(this.id), { 
       headers: { 
         'Content-Type': 'multipart/form-data' 
       }, 

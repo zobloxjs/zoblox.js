@@ -13,7 +13,7 @@ class GroupMembersManager {
   async fetch({ roleId, limit, sortOrder, cursor } = {}) {
     try {
       roleId = roleId || '', limit = limit || 100, sortOrder = sortOrder || 'Desc', cursor = cursor || '';
-      const { data: Members } = await this.zoblox.session.get(Routes.groups.players(this.group.id, roleId, limit, sortOrder, cursor));
+      const { data: Members } = await this.zoblox.rest.get(Routes.groups.players(this.group.id, roleId, limit, sortOrder, cursor));
       return Members;
     } catch (e) {
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;

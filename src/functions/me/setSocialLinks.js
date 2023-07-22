@@ -2,7 +2,7 @@ const Routes = require('../../util/Routes.js');
 
 module.exports = async function(data) {
   try {
-    const response = await this.zoblox.session.post(Routes.accountinformation.promisesChannels, {
+    const response = await this.zoblox.rest.post(Routes.accountinformation.promisesChannels, {
       data 
     });
     return response;

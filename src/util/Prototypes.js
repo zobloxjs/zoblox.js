@@ -28,7 +28,6 @@ MeUser.prototype.wearClothes = require('../functions/me/wearClothes.js');
 //Zoblox 
 Zoblox.prototype.fetchCurrentUser = require('../functions/zoblox/fetchCurrentUser.js');
 Zoblox.prototype.fetchThumbnails = require('../functions/zoblox/fetchThumbnails.js');
-Zoblox.prototype.getSession = require('../functions/zoblox/getSession.js');
 Zoblox.prototype.getXcsrf = require('../functions/zoblox/getXcsrf.js');
 
 //User 

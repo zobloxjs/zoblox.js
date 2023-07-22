@@ -3,7 +3,7 @@ const Routes = require('../../util/Routes.js');
 module.exports = async function({ limit, sortOrder, cursor } = {}) {
   try {
     limit = limit || 100, sortOrder = sortOrder || 'Asc', cursor = cursor || '';
-    const { data: WallPosts } = await this.zoblox.session.get(Routes.groups.wallPosts(this.id, limit, sortOrder, cursor));
+    const { data: WallPosts } = await this.zoblox.rest.get(Routes.groups.wallPosts(this.id, limit, sortOrder, cursor));
     WallPosts.data.map((WallPost) => {
       WallPost.created = new Date(WallPost.created);
       WallPost.updated = new Date(WallPost.updated);

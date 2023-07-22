@@ -18,7 +18,7 @@ class GroupsManager {
     if ('buildersClubMembersOnly' in options) data.append('buildersClubMembersOnly', options.buildersClubMembersOnly.toString());
 
     try {
-      const { data: newGroup } = await this.zoblox.session.post(Routes.groups.create, {
+      const { data: newGroup } = await this.zoblox.rest.post(Routes.groups.create, {
         headers: { 
           'Content-Type': 'multipart/form-data' 
         },
@@ -34,7 +34,7 @@ class GroupsManager {
   async search({ keyword, prioritizeExactMatch, firstGroup, limit, cursor }) {
     try {
       prioritizeExactMatch = prioritizeExactMatch || false, firstGroup = firstGroup || false, limit = limit || '', cursor = cursor || '';
-      const { data: Groups } = await this.zoblox.session.get(Routes.groups.search(keyword, prioritizeExactMatch, limit, cursor));
+      const { data: Groups } = await this.zoblox.rest.get(Routes.groups.search(keyword, prioritizeExactMatch, limit, cursor));
       Groups.data.map((Group) => {
         Group.created = new Date(Group.created);
         Group.updated = new Date(Group.updated);
@@ -48,7 +48,7 @@ class GroupsManager {
   
   async searchByName(groupName, prioritizeExactMatch = true) {
     try {
-      const { data: { data: Groups } } = await this.zoblox.session.get(Routes.groups.searchLookUp(groupName));
+      const { data: { data: Groups } } = await this.zoblox.rest.get(Routes.groups.searchLookUp(groupName));
       return prioritizeExactMatch ? Groups[0] : Groups;
     } catch (e) {
       const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;
@@ -60,7 +60,7 @@ class GroupsManager {
     try {
       if (!Array.isArray(ids)) throw new Error('The IDs must be array');
       ids = ids.join(',');
-      const { data: { data: Groups } } = await this.zoblox.session.get(Routes.groups.groups(ids));
+      const { data: { data: Groups } } = await this.zoblox.rest.get(Routes.groups.groups(ids));
       Groups.map((Group) => {
         Group.created = new Date(Group.created);
       });
@@ -73,7 +73,7 @@ class GroupsManager {
   
   async get(groupId) {
     try {
-      const { data: GroupData } = await this.zoblox.session.get(Routes.groups.group(groupId));
+      const { data: GroupData } = await this.zoblox.rest.get(Routes.groups.group(groupId));
       if (GroupData.shout) {
         GroupData.shout.created = new Date(GroupData.shout.created);
         GroupData.shout.updated = new Date(GroupData.shout.updated);

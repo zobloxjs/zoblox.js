@@ -10,13 +10,13 @@ class UsersManager {
     try {
       if (userIds) {
         if (userIds instanceof Array)  {
-          const { data: response } = await this.zoblox.session.post(Routes.users.users(''), {
+          const { data: response } = await this.zoblox.rest.post(Routes.users.users(''), {
             data: { userIds, excludeBannedUsers },
           });
          if (!response.data.length) return null;
           return response.data;
         } else {
-          const { data: response } = await this.zoblox.session.post(Routes.users.users(''), {
+          const { data: response } = await this.zoblox.rest.post(Routes.users.users(''), {
             data: { userIds: [userIds], excludeBannedUsers },
           });
           if (!response.data[0]) return null;
@@ -24,13 +24,13 @@ class UsersManager {
         }
       } else if (userNames) {
         if (userNames instanceof Array) {
-          const { data: response } = await this.zoblox.session.post(Routes.users.usernames, {
+          const { data: response } = await this.zoblox.rest.post(Routes.users.usernames, {
             data: { usernames: userNames, excludeBannedUsers },
           });
         if (!response.data.length) return null;
           return response.data;
         } else {
-          const { data: response } = await this.zoblox.session.post(Routes.users.usernames, {
+          const { data: response } = await this.zoblox.rest.post(Routes.users.usernames, {
             data: { usernames: [userNames], excludeBannedUsers },
           });
         if (!response.data[0]) return null;
@@ -46,10 +46,10 @@ class UsersManager {
   async get(userId) {
     try {
       const profile = {};      
-      const { data: user } = await this.zoblox.session.get(Routes.users.users(userId));
-      const { data: { count: friendsCount } } = await this.zoblox.session.get(Routes.friends.friendsCount(user.id));
-      const { data: { count: followingsCount } } = await this.zoblox.session.get(Routes.friends.followingsCount(user.id));
-      const { data: { count: followersCount } } = await this.zoblox.session.get(Routes.friends.followersCount(user.id));
+      const { data: user } = await this.zoblox.rest.get(Routes.users.users(userId));
+      const { data: { count: friendsCount } } = await this.zoblox.rest.get(Routes.friends.friendsCount(user.id));
+      const { data: { count: followingsCount } } = await this.zoblox.rest.get(Routes.friends.followingsCount(user.id));
+      const { data: { count: followersCount } } = await this.zoblox.rest.get(Routes.friends.followersCount(user.id));
 
       user.avatar = await fetchAvatar(userId);
       profile.friendsCount = friendsCount;

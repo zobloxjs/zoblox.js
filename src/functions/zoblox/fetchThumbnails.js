@@ -18,7 +18,7 @@ module.exports = async function(data) {
   });
 
   try {
-    const { data: { data: Thumbnails } } = await this.session.post(Routes.thumbnails.batch, {
+    const { data: { data: Thumbnails } } = await this.rest.post(Routes.thumbnails.batch, {
       data
     });
     return Thumbnails;

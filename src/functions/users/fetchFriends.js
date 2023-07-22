@@ -2,7 +2,7 @@ const Routes = require('../../util/Routes.js');
 
 module.exports = async function() {
   try {
-    const { data: { data: Friends } } = await this.zoblox.session.get(Routes.friends.friends(this.id));
+    const { data: { data: Friends } } = await this.zoblox.rest.get(Routes.friends.friends(this.id));
     Friends.map((Friend) => {
       Friend.created = new Date(Friend.created);
     });

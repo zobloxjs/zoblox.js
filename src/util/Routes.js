@@ -110,7 +110,7 @@ module.exports = {
     universes: (IDs) => https + 'games.roblox.com/v1/games?universeIds=' + IDs, 
     vipServersUniverse: (UniverseId) => https + 'games.roblox.com/v1/games/vip-servers' + UniverseId, 
     passes: (UniverseId, limit, sortOrder, cursor) => https + 'games.roblox.com/v1/games/' + UniverseId +' /game-passes?limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 
-    SocialLinks: (UniverseId) => https + 'games.roblox.com/v1/games/' + UniverseId + '/social-links/list', 
+    socialLinks: (UniverseId) => https + 'games.roblox.com/v1/games/' + UniverseId + '/social-links/list', 
   }, 
   friends: {
     friendsCount: (UserId) => https + 'friends.roblox.com/v1/users/' + UserId + '/friends/count', 

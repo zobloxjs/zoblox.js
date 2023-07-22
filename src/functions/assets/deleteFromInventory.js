@@ -1,7 +1,7 @@
 const Routes = require('../../util/Routes.js');
 
 module.exports = async function() {
-  const { data: response } = await this.zoblox.session.post(Routes.deleteFromInventory, {
+  const { data: response } = await this.zoblox.rest.post(Routes.deleteFromInventory, {
     data: 'assetId=' + this.AssetId, 
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

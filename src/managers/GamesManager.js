@@ -10,7 +10,7 @@ class GamesManager {
     try {
       if (!Array.isArray(ids)) throw new Error('The IDs must be array');
       ids = ids.join(',');
-      const { data: { data: Universes } } = await this.zoblox.session.get(Routes.games.universes(ids));
+      const { data: { data: Universes } } = await this.zoblox.rest.get(Routes.games.universes(ids));
       Universes.map((Universe) => {
         Universe.created = new Date(Universe.created);
         Universe.updated = new Date(Universe.updated);

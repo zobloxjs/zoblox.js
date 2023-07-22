@@ -2,7 +2,7 @@ const Routes = require('../../util/Routes.js');
 
 module.exports = async function() {
   try {
-    const { data: response } = await this.zoblox.session.get(Routes.groups.payoutRestriction(this.id));
+    const { data: response } = await this.zoblox.rest.get(Routes.groups.payoutRestriction(this.id));
     return response;
   } catch (e) {
     const err = e.response ? e.response.data && e.response.data.errors && e.response.data.errors.length ? `${e.response.status} ${e.response.data.errors.map(e => e.message)}` : `${e.response.status} ${e.response.statusText}` : e.message;

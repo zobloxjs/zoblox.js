@@ -11,7 +11,7 @@ const REST = require('./rest/RESTManager.js');
 class Zoblox extends EventEmitter {
   constructor(options = {}) {
     super();
-    Object.defineProperty(this, 'session', { value: new REST({ timeout: options.requestTimeout ?? defaults.requestTimeout }) });
+    Object.defineProperty(this, 'rest', { value: new REST({ timeout: options.requestTimeout ?? defaults.requestTimeout }) });
     this.client = new Client(this);
     this.users = new UsersManager(this);
     this.groups = new GroupsManager(this);
@@ -20,7 +20,7 @@ class Zoblox extends EventEmitter {
     this.me = null;
   }
   login(Cookie) {
-    return this.session.setCookie(Cookie)
+    return this.rest.setCookie(Cookie)
     .then(() => this.fetchCurrentUser()
     .then((User) => {
        this.me = new MeUser(User, this);
@@ -29,10 +29,10 @@ class Zoblox extends EventEmitter {
   }
   
   destroy() {
-    delete this.session.headers['Cookie'];
-    delete this.session.headers['X-CSRF-TOKEN'];
-    delete this.session.Cookie;
-    delete this.session.XcsrfToken;
+    delete this.rest.headers['Cookie'];
+    delete this.rest.headers['X-CSRF-TOKEN'];
+    delete this.rest.Cookie;
+    delete this.rest.XcsrfToken;
   }
 };
 module.exports = Zoblox;

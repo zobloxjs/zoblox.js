@@ -1,3 +1,3 @@
 module.exports = function() {
-  return this.session.XcsrfToken;
+  return this.rest.XcsrfToken;
 };

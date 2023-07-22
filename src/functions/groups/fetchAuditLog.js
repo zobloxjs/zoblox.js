@@ -3,7 +3,7 @@ const Routes = require('../../util/Routes.js');
 module.exports = async function({ userId, actionType, limit, sortOrder, cursor } = {}) {
   try {
     userId = userId || '', actionType = actionType || '', limit = limit || 100, sortOrder = sortOrder || 'Asc', cursor = cursor || '';
-    const { data: Logs } = await this.zoblox.session.get(Routes.groups.auditLog(this.id, userId, actionType, limit, sortOrder, cursor));
+    const { data: Logs } = await this.zoblox.rest.get(Routes.groups.auditLog(this.id, userId, actionType, limit, sortOrder, cursor));
     Logs.data.map((Log) => {
       Log.created = new Date(Log.created);
     });

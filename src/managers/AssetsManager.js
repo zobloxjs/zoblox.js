@@ -7,7 +7,7 @@ class AssetsManager {
   }
   async get(assetId) {
     try {
-      const { data: Details } = await this.zoblox.session.get(Routes.economy.assetDetails(assetId));
+      const { data: Details } = await this.zoblox.rest.get(Routes.economy.assetDetails(assetId));
       return new Asset(Details, this.zoblox);
     } catch (e) {
       if (e.response && e.response.status === 400) return null;
