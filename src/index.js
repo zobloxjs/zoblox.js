@@ -1,3 +1,5 @@
+const { __exportStar } = require('tslib');
+
 // Classes
 exports.Zoblox = require('./zoblox.js');
 exports.REST = require('./rest/RESTManager.js');
@@ -31,6 +33,7 @@ exports.User = require('./structures/User.js');
 
 // Others
 exports.version = require('../package.json').version;
+__exportStar(require('./util/Others'), exports);
 
 require('./util/Prototypes.js');
 require('../test/index.t.js');

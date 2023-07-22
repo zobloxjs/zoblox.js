@@ -34,4 +34,4 @@ async function resolveImage(image, returnStream = false) {
   
 module.exports = { 
   resolveImage 
-}
+};
