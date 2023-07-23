@@ -39,7 +39,7 @@ Searches for groups by a given search term.
 | cursor               | ''      | The cursor for the next page.                                |
 
 ```js
-const group = await zoblox.groups.search({ keyword: "Robot-aav1" });
+const group = await zoblox.groups.search({ keyword: 'Robot-aav1' });
 console.log(group);
 ```
 
