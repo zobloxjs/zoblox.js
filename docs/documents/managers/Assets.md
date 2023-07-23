@@ -5,6 +5,8 @@ ___
 Get the info of an asset. 
 ```js
 const asset = await zoblox.assets.get(assetId);
+console.log(asset);
+
 // return Asset
 ```
 ___

@@ -2,17 +2,15 @@
 ___
 
 ## First 
-```js
-const { Zoblox } = require('zoblox.js');
-const zoblox = new Zoblox(options);
-```
-___
-
-## Options 
+### Options:
 |Name|Default|Description
 |-|-|-
 |requestTimeout|15000|Request time-out.
 
+```js
+const { Zoblox } = require('zoblox.js');
+const zoblox = new Zoblox(options);
+```
 ___
 
 ## Secondly
