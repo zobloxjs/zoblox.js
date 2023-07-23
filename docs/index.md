@@ -1,21 +1,25 @@
 ## Welcome to the zobloxjs documentation! This concise guide aims to provide you with all the essential information to effectively use zobloxjs. Here, you'll find the necessary details, configurations, and guidelines to make your experience seamless.
-___
 
-## First 
+---
+
+## First
+
 ### Options:
-|Name|Default|Description
-|-|-|-
-|requestTimeout|15000|Request time-out.
+
+| Name           | Default | Description       |
+| -------------- | ------- | ----------------- |
+| requestTimeout | 15000   | Request time-out. |
 
 ```js
-const { Zoblox } = require('zoblox.js');
+const { Zoblox } = require("zoblox.js");
 const zoblox = new Zoblox(options);
 ```
-___
+
+---
 
 ## Secondly
 
-- [Assets](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Assets.md) 
+- [Assets](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Assets.md)
 - [Games]()
 - [GroupsMembers]()
 - [GroupRequests]()
