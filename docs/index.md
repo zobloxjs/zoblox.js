@@ -24,14 +24,14 @@ const zoblox = new Zoblox(options);
 - [GroupsMembers]()
 - [GroupRequests]()
 - [GroupRoles]()
-- [Groups]()
+- [Groups](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Groups.md)
 - [Users]()
 
 ---
 
-- [Asset]()
+- [Asset](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Asset.md)
 - [GamePase]()
-- [Group]()
+- [Group](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Group.md)
 - [GroupMember]()
 - [GroupRequest]()
 - [GroupRole]()
