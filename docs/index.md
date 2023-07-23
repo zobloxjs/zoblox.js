@@ -11,7 +11,7 @@
 | requestTimeout | 15000   | Request time-out. |
 
 ```js
-const { Zoblox } = require("zoblox.js");
+const { Zoblox } = require('zoblox.js');
 const zoblox = new Zoblox(options);
 ```
 
