@@ -15,8 +15,8 @@ Create a group.
 | buildersClubMembersOnly | true    | Exclusive Builders Club Membership.        |
 
 ```js
-zoblox.groups.create("Robot-aav1", {
-  icon: "imageUrl Or image Or buffer",
+zoblox.groups.create('Robot-aav1', {
+  icon: 'imageUrl Or image Or buffer',
 });
 ```
 
@@ -52,7 +52,7 @@ console.log(group);
 Searches for groups by name.
 
 ```js
-const group = await zoblox.groups.searchByName("Robot-aav1");
+const group = await zoblox.groups.searchByName('Robot-aav1');
 console.log(group);
 ```
 
@@ -80,7 +80,7 @@ console.log(groups);
 Get a group info.
 
 ```js
-const groups = await zoblox.groups.fetch([1, 2]);
+const groups = await zoblox.groups.get(1);
 console.log(groups);
 
 //return Group
