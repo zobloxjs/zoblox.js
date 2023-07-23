@@ -15,7 +15,7 @@ ___
 
 ## Secondly
 
-- [Assets]() 
+- [Assets](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Assets.md) 
 - [Games]()
 - [GroupsMembers]()
 - [GroupRequests]()

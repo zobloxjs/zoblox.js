@@ -11,4 +11,4 @@ console.log(asset);
 ```
 ___
 
-[Asset]()
+[Asset](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Asset.md)
