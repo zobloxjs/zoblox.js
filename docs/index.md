@@ -20,21 +20,21 @@ const zoblox = new Zoblox(options);
 ## Secondly
 
 - [Assets](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Assets.md)
-- [Games]()
-- [GroupsMembers]()
-- [GroupRequests]()
-- [GroupRoles]()
+- [Games](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Games.md)
+- [GroupsMembers](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/GroupMembers.md)
+- [GroupRequests](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/GroupRequests.md)
+- [GroupRoles](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/GroupRoles.md)
 - [Groups](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Groups.md)
-- [Users]()
+- [Users](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/managers/Users.md)
 
 ---
 
 - [Asset](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Asset.md)
 - [GamePase]()
 - [Group](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Group.md)
-- [GroupMember]()
-- [GroupRequest]()
-- [GroupRole]()
-- [MeUser]()
-- [Universe]()
-- [User]()
+- [GroupMember](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/GroupMember.md)
+- [GroupRequest](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/GroupRequest.md)
+- [GroupRole](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/GroupRole.md)
+- [MeUser](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/MeUser.md)
+- [Universe](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Universe.md)
+- [User](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/User.md)
