@@ -12,7 +12,7 @@ asset.buy();
 [Show Source]()
 
 - ### deleteFromInventory()
-Remove asset from the authenticated user.
+Remove asset from the authenticated user inventory.
 
 ```js
 //Register first with cookie < zoblox.login(Cookie)
