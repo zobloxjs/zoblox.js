@@ -88,4 +88,6 @@ console.log(group);
 
 [Show Source]()
 
+___
+
 [Group](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Group.md)
