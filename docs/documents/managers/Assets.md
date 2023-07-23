@@ -7,8 +7,9 @@ Get the info of an asset.
 const asset = await zoblox.assets.get(assetId);
 console.log(asset);
 
-// return Asset
+//return Asset
 ```
+[Show Source]()
 ___
 
 [Asset](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Asset.md)

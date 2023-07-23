@@ -38,7 +38,7 @@ Gets available resale copies of a limited asset.
 ```js
 //Register first with cookie < zoblox.login(Cookie)
 
-const resellers = await asset.fetchResellers(options);
+const resellers = await asset.fetchResellers();
 console.log(resellers);
 ```
 [Show Source]()
