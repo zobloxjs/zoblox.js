@@ -30,7 +30,7 @@ const zoblox = new Zoblox(options);
 ---
 
 - [Asset](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Asset.md)
-- [GamePase]()
+- [GamePase](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/GamePass.md)
 - [Group](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/Group.md)
 - [GroupMember](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/GroupMember.md)
 - [GroupRequest](https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/documents/structures/GroupRequest.md)
