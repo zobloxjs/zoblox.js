@@ -80,8 +80,8 @@ console.log(groups);
 Get a group info.
 
 ```js
-const groups = await zoblox.groups.get(1);
-console.log(groups);
+const group = await zoblox.groups.get(1);
+console.log(group);
 
 //return Group
 ```
