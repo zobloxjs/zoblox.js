@@ -67,8 +67,6 @@ Get a groups info.
 ```js
 const groups = await zoblox.groups.fetch([1, 2]);
 console.log(groups);
-
-//return Array
 ```
 
 [Show Source]()
