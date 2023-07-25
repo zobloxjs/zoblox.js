@@ -1,5 +1,6 @@
 .env
 .config/
+docs/
 shrinkwrap.yaml
 pnpm-debug.log
 .glitchdotcom.json

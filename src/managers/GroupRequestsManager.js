@@ -1,7 +1,7 @@
 const Routes = require('../util/Routes.js');
 const GroupRequest = require('../structures/GroupRequest.js');
 
-class RequestsManager {
+class GroupRequestsManager {
   constructor(Group, zoblox) {
     Object.defineProperty(this, 'zoblox', { value: zoblox });
     Object.defineProperty(this, 'group', { value: Group });	
@@ -30,4 +30,4 @@ class RequestsManager {
     } 
   }
 };
-module.exports = RequestsManager;
+module.exports = GroupRequestsManager;

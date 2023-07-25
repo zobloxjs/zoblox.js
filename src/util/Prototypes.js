@@ -89,6 +89,7 @@ GroupRequest.prototype.decline = require('../functions/groups/requests/decline.j
 //GroupRole
 GroupRole.prototype.delete = require('../functions/groups/roles/delete.js');
 GroupRole.prototype.edit = require('../functions/groups/roles/edit.js');
+GroupRole.prototype.editPermissions = require('../functions/groups/roles/editPermissions.js');
 
 //GamePass
 GamePass.prototype.edit = require('../functions/games/pass/edit.js');
