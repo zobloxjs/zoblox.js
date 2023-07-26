@@ -3,7 +3,7 @@ const Routes = require('../../util/Routes.js');
 module.exports = async function() {
   try {
     const { data: { data: Groups } } = await this.zoblox.rest.get(Routes.groups.userRoles(this.id));
-    const GroupsMap = new Map(Groups.map((Group) => [Group.group.id, { ...Group }]));
+    const GroupsMap = new Map(Groups.map((Group) => [Group.group.id, { ...Group } ]));
 
     GroupsMap.toArray = function() {
       return Array.from(this.values());
