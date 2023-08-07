@@ -56,7 +56,7 @@ zoblox.on('userReady', () => console.log(`Logged in as: ${zoblox.me.username} ($
 
 ## Links
 
-- [Documentation][documentation] (Soon, you can join discord server for help)
+- [Documentation][documentation]
 - [zoblox.js Discord server][discord]
 - [GitHub][source]
 - [npm][npm]
@@ -73,7 +73,7 @@ If you don't understand something in the documentation, you are experiencing pro
 
 - [Slayver](https://github.com/SlayverB)
 
-[documentation]: https://zobloxjs.com/
+[documentation]: https://github.com/zobloxjs/zoblox.js/blob/glitch/docs/index.md
 [discord]: https://discord.gg/5TMUMypcxj
 [source]: https://github.com/zobloxjs/zoblox.js
 [npm]: https://npmjs.org/package/zoblox.js

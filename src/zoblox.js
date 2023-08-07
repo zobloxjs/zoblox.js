@@ -19,13 +19,13 @@ class Zoblox extends EventEmitter {
     this.assets = new AssetsManager(this);
     this.me = null;
   }
-  login(Cookie) {
-    return this.rest.setCookie(Cookie)
-    .then(() => this.fetchCurrentUser()
-    .then((User) => {
-       this.me = new MeUser(User, this);
-       return this.me;
-    })) 
+  async login(Cookie) {
+    await this.rest.setCookie(Cookie);
+    const user = await this.fetchCurrentUser();
+      
+    this.me = new MeUser(user, this);
+      
+    return this.me;
   }
   
   destroy() {

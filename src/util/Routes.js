@@ -54,7 +54,8 @@ module.exports = {
     assetDetails: (AssetId) => https + 'economy.roblox.com/v2/assets/' + AssetId + '/details', 
     purchasesProduct: (ProductId) => https + 'economy.roblox.com/v1/purchases/products/' + ProductId, 
     assetResaleData: (AssetId) => https + 'economy.roblox.com/v1/assets/' + AssetId + '/resale-data', 
-    assetResellers: (AssetId, limit, cursor) => https + 'economy.roblox.com/v1/assets/' + AssetId + '/resellers?limit=' + limit + '&cursor=' + cursor
+    assetResellers: (AssetId, limit, cursor) => https + 'economy.roblox.com/v1/assets/' + AssetId + '/resellers?limit=' + limit + '&cursor=' + cursor, 
+    groupPayoutEligibility: (GroupId, UserId) => https + 'economy.roblox.com/v1/groups/' + GroupId + '/users-payout-eligibility?userIds=' + UserId
   },
   itemconfiguration: {
     getAssets: (GroupId, assetType, limit, sortOrder, cursor) => https + 'itemconfiguration.roblox.com/v1/creations/get-assets?groupId=' + GroupId + '&assetType=' + assetType + '&limit=' + limit + '&sortOrder=' + sortOrder + '&cursor=' + cursor, 

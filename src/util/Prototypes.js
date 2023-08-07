@@ -76,6 +76,7 @@ Group.prototype.setName = require('../functions/groups/setName.js');
 Group.prototype.setOwner = require('../functions/groups/setOwner.js');
 
 //GroupMember
+GroupMember.prototype.fetchPayoutEligibility = require('../functions/groups/members/fetchPayoutEligibility.js');
 GroupMember.prototype.fetchRole = require('../functions/groups/members/fetchRole.js');
 GroupMember.prototype.hasRole = require('../functions/groups/members/hasRole.js');
 GroupMember.prototype.kick = require('../functions/groups/members/kick.js');
